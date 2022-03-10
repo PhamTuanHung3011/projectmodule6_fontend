@@ -11,7 +11,6 @@ import {RegisterComponent} from "./login-logout/register/register.component";
 import {FooterComponent} from "./nav-foot/footer/footer.component";
 import {UserAccountComponent} from "./login-logout/user-account/user-account.component";
 import {ShowPostComponent} from "./post/show-post/show-post.component";
-import {NavbarComponent} from "./nav-foot/navbar/navbar.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
@@ -31,7 +30,7 @@ import {AngularFireModule} from "@angular/fire/compat";
     HomeComponent,
     AboutComponent,
     FooterComponent,
-    NavbarComponent,
+    // NavbarComponent,
     ListFriendComponent,
     LoginComponent,
     RegisterComponent,

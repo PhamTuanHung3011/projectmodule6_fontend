@@ -737,7 +737,16 @@
         </li>
       </ul>
       <div class="user-img">
-        <h5>Jack Carter</h5>
+        <a *ngIf="!checkLogin" mat-button class="docs-button" routerLink="/register" aria-label="Angular Material">
+          <span>Register</span>
+        </a>
+          <a *ngIf="!checkLogin" mat-button class="docs-button" routerLink="/login" aria-label="Angular Material">
+            <span>Login</span>
+          </a>
+
+          <a *ngIf="checkLogin" mat-button class="docs-button" routerLink="/user-account" aria-label="Angular Material">
+            <span>{{name_user2}}</span>
+          </a>
         <img src="assets/images/resources/admin.jpg" alt="">
         <span class="status f-online"></span>
         <div class="user-setting">
@@ -1435,9 +1444,9 @@
                           <div class="more">
                             <div class="more-post-optns"><i class="ti-more-alt"></i>
                               <ul>
-                                <li><i class="fa fa-pencil-square-o" [routerLink]="['/admin/edit', p.id]"></i>Edit Post
+                                <li><i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#editPost" (click)="showEdit(p)"></i>Edit Post
                                 </li>
-                                <li><i class="fa fa-trash-o" [routerLink]="['/admin/delete', p.id]"></i>Delete Post</li>
+                                <li><i class="fa fa-trash-o" data-toggle="modal" data-target="#deletePost" (click)="delete(p.id)"></i>Delete Post</li>
                                 <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
                                 <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
                               </ul>
@@ -1506,39 +1515,6 @@
                         </div>
                         <div class="coment-area" style="display: block;">
                           <ul class="we-comet">
-                            <li>
-                              <div class="comet-avatar">
-                                <img src="assets/images/resources/nearly3.jpg" alt="">
-                              </div>
-                              <div class="we-comment">
-                                <h5><a href="time-line.html" title="">Jason borne</a></h5>
-                                <p>we are working for the dance and sing songs. this video is very awesome for the
-                                  youngster. please vote this video and like our channel</p>
-                                <div class="inline-itms">
-                                  <span>1 year ago</span>
-                                  <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                  <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
-                                </div>
-                              </div>
-
-                            </li>
-                            <li>
-                              <div class="comet-avatar">
-                                <img src="assets/images/resources/comet-4.jpg" alt="">
-                              </div>
-                              <div class="we-comment">
-                                <h5><a href="time-line.html" title="">Sophia</a></h5>
-                                <p>we are working for the dance and sing songs. this video is very awesome for the
-                                  youngster.
-                                  <i class="em em-smiley"></i>
-                                </p>
-                                <div class="inline-itms">
-                                  <span>1 year ago</span>
-                                  <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                  <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
-                                </div>
-                              </div>
-                            </li>
                             <li>
                               <a href="#" title="" class="showmore underline">more comments+</a>
                             </li>
@@ -2293,7 +2269,8 @@
         <form #formEdit="ngForm" (ngSubmit)="edit(formEdit.value)">
           <div class="form-group">
             <label class="col-form-label">Content:</label>
-            <input [(ngModel)]="post.content" #name=ngModel>
+            <input [(ngModel)]="post.content" name="content" #content=ngModel>
+
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Message:</label>
@@ -2303,7 +2280,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Save</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
       </div>
     </div>
   </div>

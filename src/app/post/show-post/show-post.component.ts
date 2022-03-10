@@ -8,6 +8,7 @@ import {StatusPost} from "../../../models/Enum";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {TokenService} from "../../../service/auth/token.service";
 
 @Component({
   selector: 'app-show-post',
@@ -27,8 +28,14 @@ export class ShowPostComponent implements OnInit {
   img: Image = new Image(0,"");
   enum: StatusPost[] = [];
 
+  // @ts-ignore
+  name: string;
+  // @ts-ignore
+  name_user2: string;
+  checkLogin = true;
+
   formCreate!: FormGroup;
-  constructor(private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage) {
+  constructor(private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
     this.findAll();
   }
 
@@ -43,6 +50,8 @@ export class ShowPostComponent implements OnInit {
       status: new FormControl(this.post.status),
       link: new FormControl(this.img.link)
     })
+    // @ts-ignore
+    this.name_user2 = window.sessionStorage.getItem('Name_Key')
   }
 
   findAll() {
@@ -56,6 +65,7 @@ export class ShowPostComponent implements OnInit {
       alert("Create thanh cong")
       this.findAll()
     })
+    window.location.reload()
   }
 
   submit() {
@@ -78,8 +88,10 @@ export class ShowPostComponent implements OnInit {
   }
 
   showEdit(post: Post) {
+    console.log("check ham showedit")
     this.postService.findById(post.id).subscribe((data) => {
       this.post = data;
+      console.log("show data", data)
     })
   }
 
