@@ -1,0 +1,21 @@
+import {Users} from "./Users";
+import {DatePipe} from "@angular/common";
+
+export class Post{
+  id!: number;
+  content!: string;
+  status!: string;
+  date_Post!: Date;
+  count_Like!: number;
+  user!: Users;
+  comment!: Comment;
+
+
+  constructor(id: number, content: string, status: string, date_Post: Date, count_Like: number) {
+    this.id = id;
+    this.content = content;
+    this.status = status;
+    this.date_Post = date_Post;
+    this.count_Like = count_Like;
+  }
+}

@@ -1,0 +1,17 @@
+
+<nav class="docs-navbar-header" aria-label="Top Toolbar">
+  <a *ngIf="!checkLogin" mat-button class="docs-button" routerLink="/register" aria-label="Angular Material">
+    <span>Register</span>
+  </a>
+  <a *ngIf="!checkLogin" mat-button class="docs-button" routerLink="/login" aria-label="Angular Material">
+    <span>Login</span>
+  </a>
+
+  <a *ngIf="checkLogin" mat-button class="docs-button" routerLink="/user-account" aria-label="Angular Material">
+    <span>{{name}}</span>
+  </a>
+
+  <a mat-icon-button class="docs-button docs-navbar-show-small" href="https://github.com/vmudigal/ngx-audio-player"
+     aria-label="GitHub Repository">
+  </a>
+</nav>
