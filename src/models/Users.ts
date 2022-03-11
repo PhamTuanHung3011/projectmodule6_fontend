@@ -23,7 +23,7 @@ export class Users{
     this.email = email;
     this.phone = phone;
     this.address = address;
-    this.gender = gender;
+    // this.gender = gender;
     this.password = password;
     this.avatar = avatar;
     this.role = role;

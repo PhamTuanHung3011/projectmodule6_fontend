@@ -9,6 +9,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {TokenService} from "../../../service/auth/token.service";
+import {SearchUserService} from "../../../service/search-user-service/search-user.service";
+import {Users} from "../../../models/Users";
 
 @Component({
   selector: 'app-show-post',
@@ -27,16 +29,17 @@ export class ShowPostComponent implements OnInit {
   post: Post = new Post(0,"",StatusPost[StatusPost.EVERYONE],new Date(),0);
   img: Image = new Image(0,"");
   enum: StatusPost[] = [];
-
+  namesearch: string = '';
   // @ts-ignore
   name_user2: string;
   // @ts-ignore
   name_user1: string;
   checkLogin = true;
-
+  showUser!: Users[];
   formCreate!: FormGroup;
-  constructor(private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
+  constructor(private searchservice: SearchUserService,private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
     this.findAll();
+    this.showUser = this.searchservice.showUsers
   }
 
   ngOnInit(): void {
@@ -110,5 +113,10 @@ export class ShowPostComponent implements OnInit {
     })
 
   }
-
+  showUserSearch() {
+    this.searchservice.findUser(this.namesearch).subscribe(data => {
+      this.showUser = data;
+      this.router.navigate(['/search'])
+    })
+  }
 }

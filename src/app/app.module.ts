@@ -23,6 +23,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
+import { SearchUsersComponent } from './search-users/search-users.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {AngularFireModule} from "@angular/fire/compat";
     LoginComponent,
     RegisterComponent,
     UserAccountComponent,
-    ShowPostComponent
+    ShowPostComponent,
+    SearchUsersComponent
   ],
   imports: [
     BrowserModule,

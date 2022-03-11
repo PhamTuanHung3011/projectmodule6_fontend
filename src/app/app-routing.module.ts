@@ -7,6 +7,7 @@ import {LoginComponent} from "./login-logout/login/login.component";
 import {RegisterComponent} from "./login-logout/register/register.component";
 import {ShowPostComponent} from "./post/show-post/show-post.component";
 import {UserAccountComponent} from "./login-logout/user-account/user-account.component";
+import {SearchUsersComponent} from "./search-users/search-users.component";
 
 const routes: Routes = [
   {path:'',component:RegisterComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'listfriend',component:ListFriendComponent},
   {path:'post',component:ShowPostComponent},
   {path: "user-account" , component: UserAccountComponent},
+  {path:"search",component:SearchUsersComponent},
   {
     path: 'admin', loadChildren: () => import('./post/show-post/post.module').then(module => module.PostModule)
   },
