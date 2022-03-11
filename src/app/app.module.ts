@@ -35,7 +35,7 @@ import {AngularFireModule} from "@angular/fire/compat";
     LoginComponent,
     RegisterComponent,
     UserAccountComponent,
-    ShowPostComponent
+    ShowPostComponent,
   ],
   imports: [
     BrowserModule,

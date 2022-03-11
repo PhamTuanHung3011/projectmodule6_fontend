@@ -1,4 +1,5 @@
 import {Users} from "./Users";
+import {StatusFriend} from "./Enum";
 
 
 export class Friend {
