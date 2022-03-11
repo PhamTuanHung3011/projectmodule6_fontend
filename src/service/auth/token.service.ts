@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 const TOKEN_KEY = 'Token_Key';
 const NAME_KEY = 'Name_Key';
 const ROLE_KEY = 'Role_Key';
+const ID_KEY = 'Id_Key';
 @Injectable({
   providedIn: 'root'
 })
@@ -53,6 +54,15 @@ export class TokenService {
       window.location.reload();
     })
 
+  }
+
+  public setId(id:number){
+    window.sessionStorage.removeItem(ID_KEY);
+    window.sessionStorage.setItem(ID_KEY, String(id))
+  }
+  public getId(): string{
+    // @ts-ignore
+    return window.sessionStorage.getItem(ID_KEY);
   }
 
 }

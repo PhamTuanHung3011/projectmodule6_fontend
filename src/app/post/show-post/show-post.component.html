@@ -1276,7 +1276,7 @@
 <!--                                                    </li>-->
                             <li>
                               <i class=""></i>
-                              <label>
+                              <label row="2px">
                                 <select>
                                   <option >QRT</option>
                                 </select>
@@ -1455,7 +1455,7 @@
 
                         </div>
                         <div class="post-meta">
-                          <ins><a [routerLink]="['admin/detail', p.id]">{{p.user}}</a></ins>
+                          <ins><a [routerLink]="['admin/detail', p.id]">{{p.users.name}}</a></ins>
                           <span><i class="fa fa-globe"></i>{{p.date_Post}}</span>
 
                           <p>
@@ -2272,10 +2272,10 @@
             <input [(ngModel)]="post.content" name="content" #content=ngModel>
 
           </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
+<!--          <div class="form-group">-->
+<!--            <label class="col-form-label">Img:</label>-->
+<!--            <input [(ngModel)]="arrayFile" name="arrayFile" #arrayFile=ngModel>-->
+<!--          </div>-->
         </form>
       </div>
       <div class="modal-footer">

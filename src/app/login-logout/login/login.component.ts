@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
     )
     this.authService.singIn(this.signInForm).subscribe(data=>{
       if(data.token !=null) {
+        this.tokenService.setId(data.id);
         this.tokenService.setToken(data.token);
         this.tokenService.setName(data.name);
         this.tokenService.setRole(data.roles);
