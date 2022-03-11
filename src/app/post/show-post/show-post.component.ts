@@ -29,9 +29,9 @@ export class ShowPostComponent implements OnInit {
   enum: StatusPost[] = [];
 
   // @ts-ignore
-  name: string;
-  // @ts-ignore
   name_user2: string;
+  // @ts-ignore
+  name_user1: string;
   checkLogin = true;
 
   formCreate!: FormGroup;

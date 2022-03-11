@@ -7,7 +7,7 @@ export class Post{
   status!: string;
   date_Post!: Date;
   count_Like!: number;
-  user!: Users;
+  users!: Users;
   comment!: Comment;
 
 
