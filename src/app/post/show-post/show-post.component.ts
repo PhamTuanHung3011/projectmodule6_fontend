@@ -100,6 +100,7 @@ export class ShowPostComponent implements OnInit {
       alert("edit thành công");
       this.findAll()
     })
+    window.location.reload()
   }
 
   delete(id: number) {

@@ -1439,6 +1439,7 @@
                       <div class="friend-info">
                         <figure>
                           <img src="assets/images/resources/nearly1.jpg" alt="">
+                          <ins><a [routerLink]="['admin/detail', p.id]">{{p.users.name}}</a></ins>
                         </figure>
                         <div class="friend-name">
                           <div class="more">
@@ -1455,7 +1456,7 @@
 
                         </div>
                         <div class="post-meta">
-                          <ins><a [routerLink]="['admin/detail', p.id]">{{p.users.name}}</a></ins>
+
                           <span><i class="fa fa-globe"></i>{{p.date_Post}}</span>
 
                           <p>
@@ -2260,7 +2261,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" >Create Post</h5>
+        <h5 class="modal-title" >Chinh sua bai viet</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -2272,15 +2273,15 @@
             <input [(ngModel)]="post.content" name="content" #content=ngModel>
 
           </div>
-<!--          <div class="form-group">-->
-<!--            <label class="col-form-label">Img:</label>-->
-<!--            <input [(ngModel)]="arrayFile" name="arrayFile" #arrayFile=ngModel>-->
-<!--          </div>-->
+          <div class="form-group">
+            <label class="col-form-label">Img:</label>
+            <input [(ngModel)]="selectedImg" name="link" #link=ngModel>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
       </div>
     </div>
   </div>
