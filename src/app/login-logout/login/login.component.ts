@@ -32,11 +32,13 @@ export class LoginComponent implements OnInit {
       this.form.password
     )
     this.authService.singIn(this.signInForm).subscribe(data=>{
+      console.log("data")
+      console.log(data)
       if(data.token !=null) {
-        this.tokenService.setId(data.id);
+        this.tokenService.setId(data.users.id);
         this.tokenService.setToken(data.token);
-        this.tokenService.setName(data.name);
-        this.tokenService.setRole(data.roles);
+        this.tokenService.setName(data.users.name);
+        this.tokenService.setRole(data.users.roles);
         this.router.navigate(['post']).then(() => {
           window.location.reload();
         })

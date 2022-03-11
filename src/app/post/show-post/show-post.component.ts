@@ -9,6 +9,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {TokenService} from "../../../service/auth/token.service";
+import {Post_dto} from "../../../models/Post_dto";
 
 @Component({
   selector: 'app-show-post',
@@ -23,33 +24,31 @@ export class ShowPostComponent implements OnInit {
   arrayFile = '';
 
   posts: Post[] = []
-
-  post: Post = new Post(0,"",StatusPost[StatusPost.EVERYONE],new Date(),0);
+  users = window.sessionStorage.getItem('User_Key');
+  post: Post = new Post('','',new Date(),0);
+  // post_dto: Post_dto = new Post_dto(0,StatusPost[StatusPost.EVERYONE],new Date(),0, users )
   img: Image = new Image(0,"");
   enum: StatusPost[] = [];
 
+
   // @ts-ignore
   name_user2: string;
-  // @ts-ignore
-  name_user1: string;
   checkLogin = true;
 
   formCreate!: FormGroup;
   constructor(private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
     this.findAll();
+
+    this.formCreate = new FormGroup({
+      id: new FormControl(this.post?.id),
+      content: new FormControl(this.post?.content,Validators.minLength(6)),
+      status: new FormControl(this.post?.status),
+      link: new FormControl(this.img?.link),
+
+    })
   }
 
   ngOnInit(): void {
-    this.formCreate = new FormGroup({
-      // id: new FormControl(0),
-      // title: new FormControl("",Validators.minLength(6)),
-      // price: new FormControl(0,Validators.pattern('[1-4]')),
-      // description: new FormControl("",[Validators.required, Validators.minLength(10)]),
-      id: new FormControl(this.post.id),
-      content: new FormControl(this.post.content,Validators.minLength(6)),
-      status: new FormControl(this.post.status),
-      link: new FormControl(this.img.link)
-    })
     // @ts-ignore
     this.name_user2 = window.sessionStorage.getItem('Name_Key')
   }
@@ -61,11 +60,11 @@ export class ShowPostComponent implements OnInit {
   }
 
   create() {
-    this.postService.create(this.formCreate.value).subscribe(() => {
+    this.postService.create(this.formCreate.value, this.tokenService.getId(), this.arrayFile).subscribe(() => {
       alert("Create thanh cong")
       this.findAll()
     })
-    window.location.reload()
+    // window.location.reload()
   }
 
   submit() {

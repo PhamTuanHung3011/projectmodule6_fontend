@@ -7,15 +7,18 @@ export class Post{
   status!: string;
   date_Post!: Date;
   count_Like!: number;
-  users!: Users;
+  users!: any;
   comment!: Comment;
+  listImage!: any;
 
 
-  constructor(id: number, content: string, status: string, date_Post: Date, count_Like: number) {
-    this.id = id;
+  constructor( content: string, status: string, date_Post: Date, count_Like: number, ) {
+
     this.content = content;
     this.status = status;
     this.date_Post = date_Post;
     this.count_Like = count_Like;
   }
+
+
 }

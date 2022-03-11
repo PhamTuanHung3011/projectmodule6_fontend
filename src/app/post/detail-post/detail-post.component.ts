@@ -25,7 +25,7 @@ export class DetailPostComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  post: Post = new Post(0,"",StatusPost[StatusPost.EVERYONE],new Date(),0);
+  post!: Post;
 
   tourDetail() {
     this.service.findById(this.id).subscribe(data => {
