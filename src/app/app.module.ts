@@ -24,6 +24,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { PrivateHomeComponent } from './post/private-home/private-home.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     RegisterComponent,
     UserAccountComponent,
     ShowPostComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    PrivateHomeComponent
   ],
   imports: [
     BrowserModule,

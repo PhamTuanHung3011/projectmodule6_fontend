@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Post} from "../../models/Post";
 import {Observable} from "rxjs";
-import {StatusPost} from "../../models/Enum";
+
 import {environment} from "../../environments/environment.prod";
-import {Users} from "../../models/Users";
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,9 @@ export class PostServiceService {
 
   findAll(): Observable<Post[]> {
     return this.http.get<Post[]>(this.FIND_ALL_POST);
+  }
+  findAllPostByUserCurrent( id: number): Observable<Post[]> {
+    return this.http.get<Post[]>(this.FIND_ALL_POST+ "/findAllByUserId/"+ id);
   }
 
   findById(id: number): Observable<Post> {
