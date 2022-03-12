@@ -747,24 +747,7 @@
           <a *ngIf="checkLogin" mat-button class="docs-button" routerLink="/user-account" aria-label="Angular Material">
             <span>{{name_user2}}</span>
           </a>
-        <img src="assets/images/resources/admin.jpg" alt="">
-        <span class="status f-online"></span>
-        <div class="user-setting">
-          <span class="seting-title">Chat setting <a href="#" title="">see all</a></span>
-          <ul class="chat-setting">
-            <li><a href="#" title=""><span class="status f-online"></span>online</a></li>
-            <li><a href="#" title=""><span class="status f-away"></span>away</a></li>
-            <li><a href="#" title=""><span class="status f-off"></span>offline</a></li>
-          </ul>
-          <span class="seting-title">User setting <a href="#" title="">see all</a></span>
-          <ul class="log-out">
-            <li><a href="about.html" title=""><i class="ti-user"></i> view profile</a></li>
-            <li><a href="setting.html" title=""><i class="ti-pencil-alt"></i>edit profile</a></li>
-            <li><a href="#" title=""><i class="ti-target"></i>activity log</a></li>
-            <li><a href="setting.html" title=""><i class="ti-settings"></i>account setting</a></li>
-            <li><a href="logout.html" title=""><i class="ti-power-off"></i>log out</a></li>
-          </ul>
-        </div>
+        <img src="assets/images/resources/admin.jpg" routerLink="/time-line">
       </div>
       <span class="ti-settings main-menu" data-ripple=""></span>
     </div>
@@ -937,7 +920,7 @@
                               <button class="post-btn-preview" type="submit" data-ripple="">Preview</button>
                             </li>
                           </ul>
-                          <button class="post-btn" type="submit">Post</button>
+                          <button class="post-btn" type="submit" data-ripple="">Post</button>
                         </div>
                       </form>
                     </div>
@@ -1158,23 +1141,23 @@
                         </div>
                         <div class="coment-area" style="display: block;">
                           <ul class="we-comet">
-                            <div *ngFor="let c of comments">
+<!--                            <div *ngFor="let c of comments">-->
                             <li>
                               <div class="comet-avatar">
                                 <img src="images/resources/nearly3.jpg" alt="">
                               </div>
                               <div class="we-comment" >
-                                <h5>{{c.users.name}}</h5>
-                                <br>
-                                <p>{{c.content}}</p>
-                                <div class="inline-itms">
-                                  <span>{{c.date_Comment}}</span>
-                                  <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                  <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+<!--                                <h5>{{c.users.name}}</h5>-->
+<!--                                <br>-->
+<!--                                <p>{{c.content}}</p>-->
+<!--                                <div class="inline-itms">-->
+<!--                                  <span>{{c.date_Comment}}</span>-->
+<!--                                  <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>-->
+<!--                                  <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>-->
                                 </div>
-                              </div>
-                            </li>
-                            </div>
+<!--                              </div>-->
+<!--                            </li>-->
+<!--                            </div>-->
 
                             <li>
                               <a href="#" title="" class="showmore underline">more comments+</a>
@@ -1184,7 +1167,7 @@
                                 <img src="assets/images/resources/nearly1.jpg" alt="">
                               </div>
                               <div class="post-comt-box">
-                                <form (ngSubmit)="createComment()" [formGroup]="formCreateComment">
+<!--                                <form (ngSubmit)="createComment()" [formGroup]="formCreateComment">-->
                                   <textarea placeholder="Post your comment" formControlName="content"></textarea>
                                   <div class="add-smiles">
                                     <div class="uploadimage">
@@ -1211,7 +1194,7 @@
                                   </div>
 
                                   <button class="btn-outline-success" type="submit">----------></button>
-                                </form>
+<!--                                </form>-->
                               </div>
                             </li>
                           </ul>
