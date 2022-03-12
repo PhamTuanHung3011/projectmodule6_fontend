@@ -10,6 +10,8 @@ import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {TokenService} from "../../../service/auth/token.service";
 import {Post_dto} from "../../../models/Post_dto";
+import {Comment} from "../../../models/Comment";
+import {CommentService} from "../../../service/commentService/comment.service";
 
 @Component({
   selector: 'app-show-post',
@@ -35,9 +37,15 @@ export class ShowPostComponent implements OnInit {
   name_user2: string;
   checkLogin = true;
 
+  comments: Comment[] = []
+  comment: Comment = new Comment(0,'',new Date());
+
+  formCreateComment!: FormGroup;
+
   formCreate!: FormGroup;
-  constructor(private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
+  constructor(private http: HttpClient, private commentService: CommentService, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
     this.findAll();
+    this.findAllComment()
 
     this.formCreate = new FormGroup({
       id: new FormControl(this.post?.id),
@@ -45,6 +53,11 @@ export class ShowPostComponent implements OnInit {
       status: new FormControl(this.post?.status),
       link: new FormControl(this.img?.link),
 
+    })
+
+    this.formCreateComment = new FormGroup({
+      id: new FormControl(this.comment?.id),
+      content: new FormControl(this.comment?.content),
     })
   }
 
@@ -60,11 +73,14 @@ export class ShowPostComponent implements OnInit {
   }
 
   create() {
+    console.log('form Create == >', this.formCreate.value)
+    console.log('get ID --> ', this.tokenService.getId())
+    console.log('list anh -->', this.arrayFile)
     this.postService.create(this.formCreate.value, this.tokenService.getId(), this.arrayFile).subscribe(() => {
       alert("Create thanh cong")
-      this.findAll()
+      // this.findAll()
     })
-    // window.location.reload()
+    window.location.reload()
   }
 
   submit() {
@@ -104,6 +120,45 @@ export class ShowPostComponent implements OnInit {
 
   delete(id: number) {
     this.postService.delete(id).subscribe(() => {
+      alert("xóa thành công");
+      this.findAll()
+    })
+
+  }
+
+  // Comment
+
+  findAllComment() {
+    this.commentService.findAll().subscribe(data => {
+      this.comments = data;
+    }, error => {})
+  }
+
+  createComment() {
+    this.commentService.create(this.formCreateComment.value, this.tokenService.getId(),this.tokenService.getId()).subscribe(() => {
+      alert("Create thanh cong")
+
+    })
+    window.location.reload()
+  }
+
+  showEditComment(comment: Comment) {
+    this.commentService.findById(comment.id).subscribe((data) => {
+      this.comment = data;
+      console.log("show data", data)
+    })
+  }
+
+  editComment(formEdit: any) {
+    this.commentService.edit(formEdit).subscribe(() => {
+      alert("edit thành công");
+      this.findAll()
+    })
+    window.location.reload()
+  }
+
+  deleteComment(id: number) {
+    this.commentService.delete(id).subscribe(() => {
       alert("xóa thành công");
       this.findAll()
     })

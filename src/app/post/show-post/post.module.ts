@@ -6,13 +6,13 @@ import {PostRoutingModule} from "./post-routing.module";
 
 @NgModule({
   declarations: [
-    DetailPostComponent
+    DetailPostComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    PostRoutingModule
+    PostRoutingModule,
   ]
 })
 export class PostModule { }
