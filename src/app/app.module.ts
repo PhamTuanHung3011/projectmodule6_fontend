@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
 import { ListFriendComponent } from './list-friend/list-friend.component';
 import {LoginComponent} from "./login-logout/login/login.component";
 import {RegisterComponent} from "./login-logout/register/register.component";
@@ -23,13 +22,16 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
-import { UpdateUserComponent } from './update-user/update-user.component';
+import { UpdateUserComponent } from './update-user/timeline/update-user.component';
+import {SettingComponent} from "./setting/setting.component";
+import { CommentsComponent } from './comments/comments/comments.component';
+import { ProfileComponent } from './update-user/profile/profile.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent,
     FooterComponent,
     // NavbarComponent,
     ListFriendComponent,
@@ -38,6 +40,9 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     UserAccountComponent,
     ShowPostComponent,
     UpdateUserComponent,
+    SettingComponent,
+    CommentsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

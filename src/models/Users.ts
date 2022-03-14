@@ -8,7 +8,7 @@ export class Users{
   email!: string;
   phone!: string;
   address!: string;
-  gender!: Gender;
+  gender!: string;
   password!: string;
   avatar!: string;
   role!: Role;

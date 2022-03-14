@@ -6,7 +6,6 @@ const TOKEN_KEY = 'Token_Key';
 const NAME_KEY = 'Name_Key';
 const ROLE_KEY = 'Role_Key';
 const ID_KEY = 'Id_Key';
-const ID_KEY_POST = 'Id_Key_Post';
 const USERS = 'User_Key';
 
 @Injectable({

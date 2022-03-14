@@ -1,13 +1,13 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Post} from "../../models/Post";
-import {Image} from "../../models/Image";
-import {StatusPost} from "../../models/Enum";
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Post} from "../../../models/Post";
+import {Image} from "../../../models/Image";
+import {StatusPost} from "../../../models/Enum";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
-import {PostServiceService} from "../../service/postService/post-service.service";
+import {PostServiceService} from "../../../service/postService/post-service.service";
 import {Router} from "@angular/router";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {TokenService} from "../../service/auth/token.service";
+import {TokenService} from "../../../service/auth/token.service";
 import {finalize} from "rxjs";
 
 @Component({
@@ -17,6 +17,7 @@ import {finalize} from "rxjs";
 })
 export class UpdateUserComponent implements OnInit {
 
+  @Input() userId : any;
   @ViewChild('uploadFile', {static: true}) public avatarDom: ElementRef | undefined
 
   selectedImg: any = null;
@@ -54,8 +55,7 @@ export class UpdateUserComponent implements OnInit {
   }
 
   findAll() {
-    this.postService.findAll().subscribe(data => {
-      this.posts = data;
+    this.postService.findAllPostByUserCurrent(this.userId).subscribe(() => {
     }, error => {})
   }
 
@@ -79,7 +79,7 @@ export class UpdateUserComponent implements OnInit {
   edit(formEdit: any) {
     this.postService.edit(formEdit).subscribe(() => {
       alert("edit thành công");
-      this.findAll()
+      this.findAll();
     })
     window.location.reload()
   }
@@ -87,7 +87,7 @@ export class UpdateUserComponent implements OnInit {
   delete(id: number) {
     this.postService.delete(id).subscribe(() => {
       alert("xóa thành công");
-      this.findAll()
+      this.findAll();
     })
   }
 
