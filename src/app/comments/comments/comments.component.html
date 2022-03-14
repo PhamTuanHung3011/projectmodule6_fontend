@@ -1,0 +1,139 @@
+<div class="coment-area" style="display: block;">
+  <ul class="we-comet">
+    <div *ngFor="let c of comments">
+      <li>
+        <div class="comet-avatar">
+          <img src="images/resources/nearly3.jpg" alt="">
+        </div>
+        <div class="we-comment">
+          <h5>{{c.users.name}}</h5>
+          <div class="friend-name">
+            <div class="more">
+              <div class="more-post-optns"><i class="ti-more-alt"></i>
+                <ul>
+                  <li><i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#editPost" ></i>Edit Post
+                  </li>
+                  <li><i class="fa fa-trash-o" data-toggle="modal" data-target="#deletePost"></i>Delete Post</li>
+                  <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
+                  <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+          <br>
+          <p>{{c.content}}</p>
+          <div class="inline-itms">
+            <span>{{c.date_Comment}}</span>
+            <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+            <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+          </div>
+        </div>
+      </li>
+    </div>
+
+    <li>
+      <a href="#" title="" class="showmore underline">more comments+</a>
+    </li>
+    <li class="post-comment">
+      <div class="comet-avatar">
+        <img src="assets/images/resources/nearly1.jpg" alt="">
+      </div>
+      <div class="post-comt-box">
+        <form (ngSubmit)="createComment()" [formGroup]="formComment">
+          <textarea placeholder="Post your comment" formControlName="content"></textarea>
+          <div class="add-smiles">
+            <div class="uploadimage">
+              <i class="fa fa-image"></i>
+              <label class="fileContainer">
+                <input type="file">
+              </label>
+            </div>
+            <span class="em em-expressionless" title="add icon"></span>
+            <div class="smiles-bunch">
+              <i class="em em---1"></i>
+              <i class="em em-smiley"></i>
+              <i class="em em-anguished"></i>
+              <i class="em em-laughing"></i>
+              <i class="em em-angry"></i>
+              <i class="em em-astonished"></i>
+              <i class="em em-blush"></i>
+              <i class="em em-disappointed"></i>
+              <i class="em em-worried"></i>
+              <i class="em em-kissing_heart"></i>
+              <i class="em em-rage"></i>
+              <i class="em em-stuck_out_tongue"></i>
+            </div>
+          </div>
+
+          <button class="btn-outline-success" type="submit">----------></button>
+        </form>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open-->
+<!--  modal for @mdo-->
+<!--</button>-->
+
+<!--<div class="modal fade" id="editPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+<!--     aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title">Chinh sua bai viet</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <form #formEdit="ngForm" (ngSubmit)="edit(formEdit.value)">-->
+<!--          <div class="form-group">-->
+<!--            <label class="col-form-label">Content:</label>-->
+<!--            <input [(ngModel)]="post.content" name="content">-->
+
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label class="col-form-label">Img:</label>-->
+<!--            <input [(ngModel)]="img.id" name="link">-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deletePost">-->
+<!--  Launch demo modal-->
+<!--</button>-->
+
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="deletePost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+<!--     aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title">Are you sure?</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <h2>{{post.content}}</h2>-->
+<!--        <div class="fakeimg"><img src="{{arrayFile}}" height="300" width="380"></div>-->
+<!--        <p>{{post.status}}</p>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Delete</button>-->
+<!--        &lt;!&ndash;        <button type="button" class="btn btn-success" (click)="delete()">Delete</button>&ndash;&gt;-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
