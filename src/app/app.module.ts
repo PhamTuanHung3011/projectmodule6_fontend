@@ -5,55 +5,43 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 import { ListFriendComponent } from './list-friend/list-friend.component';
-import {LoginComponent} from "./login-logout/login/login.component";
-import {RegisterComponent} from "./login-logout/register/register.component";
-import {FooterComponent} from "./nav-foot/footer/footer.component";
-import {UserAccountComponent} from "./login-logout/user-account/user-account.component";
-import {ShowPostComponent} from "./post/show-post/show-post.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {RouterModule} from "@angular/router";
-import {HttpClientModule} from "@angular/common/http";
-import {environment} from "../environments/environment";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatCardModule} from "@angular/material/card";
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { RegisterComponent } from './register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from "@angular/material/button";
-import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
-import {AngularFireStorageModule} from "@angular/fire/compat/storage";
-import {AngularFireModule} from "@angular/fire/compat";
-import { UpdateUserComponent } from './update-user/update-user.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
+    HeaderComponent,
     FooterComponent,
-    // NavbarComponent,
     ListFriendComponent,
     LoginComponent,
-    RegisterComponent,
-    UserAccountComponent,
-    ShowPostComponent,
-    UpdateUserComponent
+    LogoutComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    HttpClientModule,
-    AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
     BrowserAnimationsModule,
-    MatCardModule,
-    MatIconModule,
-    MatFormFieldModule,
     MatButtonModule,
-    MatInputModule
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
+    MatIconModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -84,5 +84,4 @@ export class TokenService {
     // @ts-ignore
     return window.sessionStorage.getItem(ID_KEY);
   }
-
 }

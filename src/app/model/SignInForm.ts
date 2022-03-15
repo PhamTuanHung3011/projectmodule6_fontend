@@ -1,4 +1,3 @@
-
 export class SignInForm {
   private username: string;
 
@@ -10,5 +9,5 @@ export class SignInForm {
     this.username = username;
     this.password = password;
   }
-  
+
 }
