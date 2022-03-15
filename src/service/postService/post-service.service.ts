@@ -4,6 +4,7 @@ import {Post} from "../../models/Post";
 import {Observable} from "rxjs";
 
 import {environment} from "../../environments/environment.prod";
+import {Post_dto} from "../../models/Post_dto";
 
 
 @Injectable({
@@ -18,9 +19,11 @@ export class PostServiceService {
 
   showPost!: Post;
 
-  findAll(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.FIND_ALL_POST);
+  findAll(): Observable<Post_dto[]> {
+    return this.http.get<Post_dto[]>(this.FIND_ALL_POST);
   }
+
+  //show bai post len tuong
   findAllPostByUserCurrent( id: number): Observable<Post[]> {
     return this.http.get<Post[]>(this.FIND_ALL_POST+ "/findAllByUserId/"+ id);
   }
@@ -40,11 +43,14 @@ export class PostServiceService {
     return this.http.post(this.FIND_ALL_POST, post);
   }
 
-  edit(post: Post): Observable<any> {
-    return this.http.put(this.FIND_ALL_POST + post.id, post);
-  }
+  // edit(post: Post, arrLinkImg: string): Observable<any> {
+  //   post.listImage = [{link: arrLinkImg}];
+  //   return this.http.put(this.FIND_ALL_POST + post.id, post);
+  //
+  // }
 
   find(post: Post) {
     this.showPost = post;
   }
+
 }

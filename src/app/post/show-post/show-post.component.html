@@ -1435,7 +1435,7 @@
                 </div><!-- top stories -->
                 <div class="loadMore">
                   <div class="central-meta item">
-                    <div class="user-post" *ngFor="let p of posts">
+                    <div class="user-post" *ngFor="let p of post_dto">
                       <div class="friend-info">
                         <figure>
                           <img src="assets/images/resources/nearly1.jpg" alt="">
@@ -1445,7 +1445,7 @@
                           <div class="more">
                             <div class="more-post-optns"><i class="ti-more-alt"></i>
                               <ul>
-                                <li><i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#editPost" (click)="showEdit(p)"></i>Edit Post
+                                <li *ngIf="p.users.id == idCurrent"><i  class="fa fa-pencil-square-o" data-toggle="modal" data-target="#editPost" (click)="showEdit(p)"></i>Edit Post
                                 </li>
                                 <li><i class="fa fa-trash-o" data-toggle="modal" data-target="#deletePost" (click)="delete(p.id)"></i>Delete Post</li>
                                 <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
@@ -1467,8 +1467,8 @@
                               <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                   <figure>
-                                    <a>
-                                      <img [src]="arrayFile">
+                                    <a *ngFor="let img of p.listImage">
+                                      <img src="{{img.link}}">
                                     </a>
                                   </figure>
                                 </div>
@@ -2266,19 +2266,19 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form #formEdit="ngForm" (ngSubmit)="edit(formEdit.value)">
-          <div class="form-group">
-            <label class="col-form-label">Content:</label>
-            <input [(ngModel)]="post.content" name="content" #content=ngModel>
+<!--      <div class="modal-body">-->
+<!--        <form #formEdit="ngForm" (ngSubmit)="edit(formEdit.value)">-->
+<!--          <div class="form-group">-->
+<!--            <label class="col-form-label">Content:</label>-->
+<!--            <input [(ngModel)]="post.content" name="content" #content=ngModel>-->
 
-          </div>
-          <div class="form-group">
-            <label class="col-form-label">Img:</label>
-            <input [(ngModel)]="selectedImg" name="link" #link=ngModel>
-          </div>
-        </form>
-      </div>
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label class="col-form-label">Img:</label>-->
+<!--            <input [(ngModel)]="selectedImg" name="link" #link=ngModel>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>

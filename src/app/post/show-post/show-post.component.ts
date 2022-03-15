@@ -24,11 +24,12 @@ export class ShowPostComponent implements OnInit {
   arrayFile = '';
 
   posts: Post[] = []
+  post_dto: any;
   users = window.sessionStorage.getItem('User_Key');
+  idCurrent = window.sessionStorage.getItem('Id_Key');
   post: Post = new Post('','',new Date(),0);
   // post_dto: Post_dto = new Post_dto(0,StatusPost[StatusPost.EVERYONE],new Date(),0, users )
   img: Image = new Image(0,"");
-  enum: StatusPost[] = [];
 
 
   // @ts-ignore
@@ -37,7 +38,7 @@ export class ShowPostComponent implements OnInit {
 
   formCreate!: FormGroup;
   constructor(private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
-    this.findAll();
+
 
     this.formCreate = new FormGroup({
       id: new FormControl(this.post?.id),
@@ -49,15 +50,19 @@ export class ShowPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.findAll();
     // @ts-ignore
     this.name_user2 = window.sessionStorage.getItem('Name_Key')
   }
 
   findAll() {
     this.postService.findAll().subscribe(data => {
-      this.posts = data;
+     this.post_dto = data;
+      console.log("data")
+      console.log(data)
     }, error => {})
   }
+
 
   create() {
     this.postService.create(this.formCreate.value, this.tokenService.getId(), this.arrayFile).subscribe(() => {
@@ -94,13 +99,13 @@ export class ShowPostComponent implements OnInit {
     })
   }
 
-  edit(formEdit: any) {
-    this.postService.edit(formEdit).subscribe(() => {
-      alert("edit thành công");
-      this.findAll()
-    })
-    window.location.reload()
-  }
+  // edit(formEdit: any) {
+  //   this.postService.edit(formEdit).subscribe(() => {
+  //     alert("edit thành công");
+  //     this.findAll()
+  //   })
+  //   window.location.reload()
+  // }
 
   delete(id: number) {
     this.postService.delete(id).subscribe(() => {

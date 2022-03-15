@@ -6,7 +6,7 @@ const TOKEN_KEY = 'Token_Key';
 const NAME_KEY = 'Name_Key';
 const ROLE_KEY = 'Role_Key';
 const ID_KEY = 'Id_Key';
-const USERS = 'User_Key';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,16 +18,7 @@ export class TokenService {
   constructor(private router: Router) {
   }
 
-  public setUser(users: Users) {
-    window.sessionStorage.removeItem(USERS);
-    // @ts-ignore
-    window.sessionStorage.setItem(USERS, users);
-  }
 
-  // @ts-ignore
-  public getUser(): Users {
-    window.sessionStorage.getItem(USERS);
-  }
 
 
   public setToken(token: string) {
