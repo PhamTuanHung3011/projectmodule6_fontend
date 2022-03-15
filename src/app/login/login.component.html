@@ -18,12 +18,36 @@
               <i class="fa fa-key"></i>login
               <span>sign in now and meet the awesome Friends around the world.</span>
             </div>
-            <form class="we-form" method="post">
-              <input type="text" placeholder="Email or NumberPhone">
-              <input type="password" placeholder="Password">
-              <input type="checkbox"><label>remember me</label>
-              <button type="submit" data-ripple="">sign in</button>
-              <a class="forgot underline" href="#" title="">forgot password?</a>
+            <form class="form-login" #f="ngForm" (ngSubmit)="f.form.valid && ngSubmit()" novalidate>
+              <mat-error *ngIf="checkRegister" class="alert alert-primary">Create New Account succsee!</mat-error>
+              <mat-form-field appearance="fill">
+                <input name="username" [(ngModel)]="form.username" matInput placeholder="User Name"
+                       #username="ngModel" minlength="5" maxlength="30" required>
+                <mat-icon color="primary" matSuffix> account_circle</mat-icon>
+                <mat-error *ngIf="username.hasError('required')"> The username is required</mat-error>
+                <mat-error *ngIf="username.hasError('minlength')"> The username must more than 5 character
+                </mat-error>
+              </mat-form-field>
+              <br>
+
+              <!--Password -->
+              <mat-form-field appearance="fill">
+                <input name="password" [(ngModel)]="form.password" matInput [type]="hide? 'password' : 'text'"
+                       placeholder="password" #password="ngModel"
+                       minlength="6" maxlength="100" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-lable]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                  <mat-icon color="primary">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="password.hasError('minlength')">The password must more than 6 character</mat-error>
+                <mat-error *ngIf="password.hasError('maxlength')"></mat-error>
+              </mat-form-field>
+              <br>
+
+              <button mat-stroked-button color="accent" type="submit" > Login
+                <mat-icon  color="accent" matSuffix> login</mat-icon>
+              </button>
+
             </form>
             <a class="with-smedia facebook" routerLink="/home" title="" data-ripple=""><i class="fa fa-facebook"></i></a>
             <a class="with-smedia twitter" href="#" title="" data-ripple=""><i class="fa fa-twitter"></i></a>
