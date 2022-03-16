@@ -32,13 +32,19 @@ export class AuthService {
   }
   // @ts-ignore
   public login(signUp: SignInForm): Observable<JwtResponse> {
-    console.log('login với user = ', signUp);
     // @ts-ignore
     if (signUp !== '') {
       this.Login.next(true);
     }
   }
   islogin():Observable<boolean>{
+    let token = window.sessionStorage.getItem('Token_Key');
+    if (token != null){
+      this.Login.next(true);
+    }else {
+      this.Login.next(false);
+
+    }
     return this.Login.asObservable();
   }
 
@@ -46,6 +52,7 @@ export class AuthService {
     this.Login.next(false);
     window.sessionStorage.clear();
     this.router.navigate([""])
+
   }
 
   // @ts-ignore

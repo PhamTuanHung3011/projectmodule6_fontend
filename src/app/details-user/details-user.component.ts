@@ -21,7 +21,6 @@ export class DetailsUserComponent implements OnInit {
     this.activatedRoute.params.subscribe((data) => {
       this.id = data['id']
       this.showDetailsUser();
-
     })
   }
 

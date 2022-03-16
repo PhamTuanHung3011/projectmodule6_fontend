@@ -55,8 +55,8 @@
                       </div>
 
                       <div class="author-content">
-                        <a class="h4 author-name" href="about.html">Jack Carter</a>
-                        <div class="country">Ontario, CA</div>
+                        <a class="h4 author-name" href="about.html">{{user2.name}}</a>
+                        <div class="country">{{user2.address}}</div>
                       </div>
                     </div>
                   </div>
@@ -65,9 +65,9 @@
                       <li>
                         <a class="" routerLink="/time-line">Timeline</a>
                       </li>
-                      <li>
-                        <a class="" routerLink="/about">About</a>
-                      </li>
+<!--                      <li>-->
+<!--                        <a class="" [routerLink]="['/about/',user2.id]">About</a>-->
+<!--                      </li>-->
                       <li>
                         <a class="" routerLink="/friend">Friends</a>
                       </li>

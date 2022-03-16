@@ -5,6 +5,7 @@ import {FriendServiceService} from "../../service/friendService/friend-service.s
 import {Users} from "../../models/Users";
 import {TokenService} from "../../service/auth/token.service";
 import {Router} from "@angular/router";
+import {UserService} from "../../service/userService/user.service";
 
 @Component({
   selector: 'app-header',
@@ -12,18 +13,32 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  Iduser!:any;
   username:any;
   public isLogin$: Observable<boolean> = new Observable<boolean>();
   namesearch!:string;
   listUser!:Users[];
-  constructor(private auth: AuthService,private myService: FriendServiceService, private router: Router) {
+  user1!:Users;
+  nameUser!:any;
+  nameUser1!:any;
+  constructor(private auth: AuthService,private myService: FriendServiceService, private router: Router,private userService:UserService) {
   }
 
   public ngOnInit(): void {
     this.isLogin$ = this.auth.islogin();
-    this.username = window.sessionStorage.getItem('Name_Key')
+    this.Iduser = window.sessionStorage.getItem('Id_Key');
+    this.nameUser1 = window.sessionStorage.getItem('Name_Key');
+    console.log(this.nameUser)
+    this.showUserById()
   }
 
+  showUserById(){
+    this.userService.findById(this.Iduser).subscribe(data =>{
+      console.log(data)
+      this.user1 = data;
+      console.log(this.user1.name)
+    })
+  }
   public logout(): void {
     this.auth.logout();
   }
