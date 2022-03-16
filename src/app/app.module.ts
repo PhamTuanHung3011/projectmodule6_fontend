@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+
 import { ListFriendComponent } from './list-friend/list-friend.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -26,7 +26,6 @@ import { TimeLineComponent } from './time-line/time-line.component';
     HomeComponent,
     AboutComponent,
     HeaderComponent,
-    FooterComponent,
     ListFriendComponent,
     LoginComponent,
     LogoutComponent,
