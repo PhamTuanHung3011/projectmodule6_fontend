@@ -12,7 +12,7 @@ export class Post{
   listImage!: any;
 
 
-  constructor( content: string, status: string, date_Post: Date, count_Like: number ) {
+  constructor( content: string, status: string, date_Post: Date, count_Like: number, ) {
 
     this.content = content;
     this.status = status;

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenService} from "../../service/auth/token.service";
+import {AuthService} from "../../service/auth/auth.service";
 import {Users} from "../../models/Users";
 import {UserService} from "../../service/userService/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -14,13 +16,17 @@ import {Role} from "../../models/Role";
 export class AboutComponent implements OnInit {
 
   idUser: any;
-  user : Users = new Users(0,'','','','','','','','', new Date());
   updateForm: any;
   user2!: string;
   genders: any;
   gender = 'MALE';
+  username:any;
+  Iduser!:any;
+  user!:Users;
 
   constructor(private userService: UserService,
+              private authService: AuthService,
+              private tokenService: TokenService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder,
@@ -33,6 +39,8 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  this.Iduser = window.sessionStorage.getItem('Id_Key');
+  this.showUserById()
     this.checkLogin()
     // @ts-ignore
     this.user2 = window.sessionStorage.getItem('Name_Key');
@@ -41,6 +49,12 @@ export class AboutComponent implements OnInit {
     this.editForm();
   }
 
+  showUserById(){
+  this.userService.findById(this.Iduser).subscribe(data =>{
+    console.log(data)
+    this.user = data;
+  })
+  }
 
   findUserById() {
     this.userService.findById(this.user.id).subscribe(() => {

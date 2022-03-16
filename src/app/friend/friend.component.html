@@ -1,4 +1,5 @@
 
+
 <section>
   <div class="gap2 gray-bg">
     <div class="container">
@@ -57,8 +58,8 @@
                       </div>
 
                       <div class="author-content">
-                        <a class="h2 author-name" href="about.html">{{user.name}}</a>
-                        <div class="country">Ontario, CA</div>
+                        <a class="h4 author-name" href="about.html">{{user.name}}</a>
+                        <div class="country">{{user.address}}</div>
                       </div>
                     </div>
                   </div>
@@ -68,7 +69,7 @@
                         <a class="" routerLink="/time-line">Timeline</a>
                       </li>
                       <li>
-                        <a class="" routerLink="/profile">About</a>
+                        <a class="" [routerLink]="['/about/',Iduser]">About</a>
                       </li>
                       <li>
                         <a class="" routerLink="/friend">Friends</a>
@@ -108,87 +109,35 @@
                 </div>
               </div>
             </div><!-- user profile banner  -->
-            <div class="col-lg-4 col-md-4" style="float: left">
-              <aside class="sidebar">
-                <div class="central-meta stick-widget">
-                  <span class="create-post">Personal Info</span>
-                  <div class="personal-head">
-                    <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
-                    <p>
-                      Hi, I’m {{user.name}}, I’m 36 and I work as a Digital Designer for the “dewwater” Agency in Ontario, Canada
-                    </p>
-                    <span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
-                    <p>
-                      {{user.birthday}}
-                    </p>
-                    <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
-                    <p>
-                      {{user.phone}}
-                    </p>
-                    <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
-                    <p>
-                      B+
-                    </p>
-                    <span class="f-title"><i class="fa fa-male"></i> Gender:</span>
-                    <p>
-                      <select ng-model="selectedPrivacy" formControlName="gender" class="col-3 form-select form-select-sm mb-2 ml-3">
-                        <option *ngFor="let gender of genders" [value]="gender.model">{{gender.model}}</option>
-                      </select>
-                    </p>
-                    <span class="f-title"><i class="fa fa-envelope"></i> Email:</span>
-                    <p>
-                      <a href="">{{user.email}}</a>
-                    </p>
-                    <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
-                    <p>
-                      {{user.address}}
-                    </p>
-                    <span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
-                    <p>
-                      UI/UX Designer
-                    </p>
-                    <span class="f-title"><i class="fa fa-handshake-o"></i> Joined:</span>
-                    <p>
-                      December 20, 2001
-                    </p>
-
-
-
-
-
-                  </div>
-                </div>
-              </aside>
-            </div>
-            <div class="col-lg-8 col-md-8" style="float: right">
-              <div class="central-meta">
-                <span class="create-post">Favourit Movies & TV Shows (33) <a href="#" title="">See All</a></span>
-                <div class="row">
-                  <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="fav-play">
-                      <figure>
-                        <img src="../../../assets/images/resources/tvplay1.jpg" alt="">
-                      </figure>
-                      <span class="tv-play-title">Attaturk Tv Series 2017 </span>
+            <div class="central-meta padding30">
+              <div class="row merged20">
+                <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let f of myfriend">
+                  <div class="friend-block">
+                    <div class="more-opotnz">
+                      <i class="fa fa-ellipsis-h"></i>
+                      <ul>
+                        <li><a href="#" title="">Block</a></li>
+                        <li><a href="#" title="">UnBlock</a></li>
+                        <li><a href="#" title="">Mute Notifications</a></li>
+                        <li><a href="#" title="">hide from friend list</a></li>
+                      </ul>
                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="fav-play">
-                      <figure>
-                        <img src="../../../assets/images/resources/tvplay2.jpg" alt="">
-                      </figure>
-                      <span class="tv-play-title">Thor Hollywood Movie 2017 </span>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="fav-play">
-                      <figure>
-                        <img src="../../../assets/images/resources/tvplay3.jpg" alt="">
-                      </figure>
-                      <span class="tv-play-title">Spider Men 2015 </span>
+                    <figure>
+                      <img [src]="f.image">
+                    </figure>
+
+                    <div class="frnd-meta">
+                      <div class="frnd-name">
+                        <a href="#" title="">{{f.name}}</a>
+                        <span>Los Angeles, CA</span>
+                      </div>
+                      <a class="send-mesg" href="#" title="">Message</a>
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="lodmore">
+                <button class="btn-view btn-load-more"></button>
               </div>
             </div>
 
@@ -198,4 +147,7 @@
     </div>
   </div>
 </section><!-- content -->
+
+
+
 
