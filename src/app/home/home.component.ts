@@ -5,10 +5,10 @@ import {UserService} from "../../service/userService/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {PostServiceService} from "../../service/postService/post-service.service";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {TokenService} from "../../service/auth/token.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {finalize} from "rxjs";
-import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {Post_dto} from "../../models/Post_dto";
 
 @Component({
@@ -17,23 +17,24 @@ import {Post_dto} from "../../models/Post_dto";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   @ViewChild('uploadFile', {static: true}) public avatarDom: ElementRef | undefined
 
   @Input() userId: any;
 
   selectedImg: any = [];
   arrayFile : string[] = [] ;
-  // @ts-ignore
-  // user: Users = {};
-  users: any;
+// @ts-ignore
+// user: Users = {};
+
   post_dto: any;
-  imgs: any;
+  post_dto_edit: any = {};
+  users = window.sessionStorage.getItem('User_Key');
+  idCurrent = window.sessionStorage.getItem('Id_Key');
   post:  Post = new Post('', '', new Date(), 0);
-  // post_dto: Post_dto = new Post_dto(0,"","",new Date(),0,[])
+  // post_dto1: Post_dto = new Post_dto(0,"","",new Date(),0,[]);
   img: Image = new Image(0, "");
 
-  // @ts-ignore
+// @ts-ignore
   status = 'Public';
   statuss: any;
 
@@ -93,7 +94,7 @@ export class HomeComponent implements OnInit {
       this.storage.upload(filePath, this.selectedImg).snapshotChanges()
         .pipe(finalize(() => (fileRef.getDownloadURL()
           .subscribe(url => {
-            this.arrayFile.push(url);
+            this.arrayFile = url;
             console.log(url);
             alert("ok")
           })))
@@ -102,30 +103,24 @@ export class HomeComponent implements OnInit {
   }
 
   uploadFileImg() {
-    for (const abc of this.avatarDom?.nativeElement.files) {
-      this.selectedImg.push(abc)
-    }
+    this.selectedImg = this.avatarDom?.nativeElement.files[0];
     this.submit();
   }
 
-  showEdit(post: Post) {
-    this.postService.findAllImgByPostId(post.id).subscribe((img) => {
-      this.img = img;
-      console.log("show data", this.img);
-    });
-    console.log("check ham showedit");
-    this.postService.findById(post.id).subscribe((data)  => {
-      this.post = data;
-      console.log("show data", data);
-    })
+  showEdit(postdto: Post_dto) {
+    console.log("check ham showedit")
+    this.postService.findById(postdto.id).subscribe((data) => {
+      console.log("show data", data)
+      this.post_dto_edit = data ;
 
+    })
   }
 
   edit(formEdit: any) {
-    this.postService.edit(formEdit, this.[arrayFile]).subscribe(() => {
+    // @ts-ignore
+    this.postService.edit(formEdit).subscribe(() => {
       alert("edit thành công");
     })
-    window.location.reload()
   }
 
   delete(id: number) {

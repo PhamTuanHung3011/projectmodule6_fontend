@@ -19,35 +19,38 @@ export class PostServiceService {
   constructor(private http: HttpClient) {
   }
 
+  showPost!: Post;
+
   findAll(): Observable<Post_dto[]> {
     return this.http.get<Post_dto[]>(this.FIND_ALL_POST);
   }
 
-  findAllImgByPostId(id : number): Observable<Image> {
-    return this.http.get<Image>(this.FIND_ALL_POST + '/' + id);
+  //show bai post len tuong
+  findAllPostByUserCurrent( id: number): Observable<Post[]> {
+    return this.http.get<Post[]>(this.FIND_ALL_POST+ "/findAllByUserId/"+ id);
   }
 
-  findAllPostByUserCurrent( id: number): Observable<Post_dto[]> {
-    return this.http.get<Post_dto[]>(this.FIND_ALL_POST+ "/findAllByUserId/"+ id);
-  }
-
-  findById(id: number): Observable<Post> {
-    return this.http.get<Post>(this.FIND_ALL_POST + "/" + id);
+  findById(id: number): Observable<Post_dto> {
+    return this.http.get<Post_dto>(this.FIND_ALL_POST + "/" + id);
   }
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(this.FIND_ALL_POST + "/" + id);
   }
 
-  create(post: Post, id: number, arrLinkImg: []): Observable<any> {
+  create(post: Post, id: number, arrLinkImg: string): Observable<any> {
     post.users = {id: id};
     post.listImage = [{link: arrLinkImg}];
     console.log(post)
     return this.http.post(this.FIND_ALL_POST, post);
   }
 
-  edit(post: Post, arrLinkImg: string): Observable<any> {
-    post.listImage = [{link: arrLinkImg}];
-    return this.http.put(this.FIND_ALL_POST + post.id, post);
+  // edit(post_dto: Post_dto): Observable<any> {
+  //   return this.http.put<any>(this.FIND_ALL_POST +  post_dto);
+  // }
+
+  find(post: Post) {
+    this.showPost = post;
   }
+
 }

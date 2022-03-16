@@ -32,7 +32,7 @@ import {AngularFireModule} from "@angular/fire/compat";
     ListFriendComponent,
     LoginComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

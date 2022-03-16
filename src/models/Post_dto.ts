@@ -8,11 +8,11 @@ export class Post_dto {
   status!: string;
   date_Post!: Date;
   count_Like!: number;
-  users!: any;
+  users!: Users;
   listImage!: Image[];
 
 
-  constructor(id: number, content: string, status: string, date_Post: Date, count_Like: number, users: any, listImage: Image[]) {
+  constructor(id: number, content: string, status: string, date_Post: Date, count_Like: number, users: Users, listImage: Image[]) {
     this.id = id;
     this.content = content;
     this.status = status;
@@ -21,4 +21,5 @@ export class Post_dto {
     this.users = users;
     this.listImage = listImage;
   }
+
 }
