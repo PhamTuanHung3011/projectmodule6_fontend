@@ -357,7 +357,7 @@
         </button>
       </div>
             <div class="modal-body">
-              <form #formEdit="ngForm" (ngSubmit)="edit(formEdit.value)">
+              <form #formEdit="ngForm">
                 <div class="form-group">
                   <label class="col-form-label">Content:</label>
 
@@ -366,7 +366,7 @@
                 </div>
                 <div class="form-group">
                   <label class="col-form-label">Img:</label>
-                  <input type="file" #uploadFile (change)="uploadFileImg()" class="form-control" name="listImage">
+                  <input type="file" #uploadFile1 (change)="uploadFileImg1()" class="form-control" name="listImage">
                   <!--            <img src="{{img.link}}" width="300" height="250">-->
                   <div >
                     <figure *ngFor="let img of post_dto_edit?.listImage">
@@ -376,11 +376,12 @@
                     </figure>
                   </div>
                 </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" (click)="edit(formEdit.value)" data-dismiss="modal">Save</button>
               </form>
             </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+
       </div>
     </div>
   </div>

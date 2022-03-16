@@ -18,10 +18,12 @@ import {Post_dto} from "../../models/Post_dto";
 })
 export class HomeComponent implements OnInit {
   @ViewChild('uploadFile', {static: true}) public avatarDom: ElementRef | undefined
+  @ViewChild('uploadFile1', {static: true}) public avatarDom1: ElementRef | undefined
 
   @Input() userId: any;
 
   selectedImg: any = null;
+  selectedImg1: any = null;
   arrayFile = '';
 // @ts-ignore
 // user: Users = {};
@@ -101,10 +103,29 @@ export class HomeComponent implements OnInit {
         ).subscribe()
     }
   }
+  submit1() {
+    if (this.selectedImg1 != null) {
+      const filePath = this.selectedImg1.name;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectedImg1).snapshotChanges()
+        .pipe(finalize(() => (fileRef.getDownloadURL()
+          .subscribe(url => {
+            this.arrayFile = url;
+            console.log(url);
+            alert("ok")
+          })))
+        ).subscribe()
+    }
+  }
 
   uploadFileImg() {
     this.selectedImg = this.avatarDom?.nativeElement.files[0];
     this.submit();
+  }
+  uploadFileImg1() {
+    // @ts-ignore
+    this.selectedImg1 = this.avatarDom1.nativeElement.files[0];
+    this.submit1();
   }
 
   showEdit(postdto: Post_dto) {
@@ -117,8 +138,11 @@ export class HomeComponent implements OnInit {
   }
 
   edit(formEdit: any) {
+    console.log("vao form edit")
     // @ts-ignore
+
     this.postService.edit(formEdit).subscribe(() => {
+
       alert("edit thành công");
     })
   }

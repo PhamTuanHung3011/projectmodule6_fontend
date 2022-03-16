@@ -43,9 +43,10 @@ export class PostServiceService {
     return this.http.post(this.FIND_ALL_POST, post);
   }
 
-  // edit(post_dto: Post_dto): Observable<any> {
-  //   return this.http.put<any>(this.FIND_ALL_POST +  post_dto);
-  // }
+  edit(post: Post, arrLinkImg: string): Observable<any> {
+    post.listImage = [{link: arrLinkImg}];
+    return this.http.put<any>(this.FIND_ALL_POST , post );
+  }
 
   find(post: Post) {
     this.showPost = post;
