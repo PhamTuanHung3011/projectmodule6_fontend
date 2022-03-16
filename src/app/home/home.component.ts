@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 // user: Users = {};
 
   post_dto: any;
-  post_dto_edit: any;
+  post_dto_edit: any = {};
   users = window.sessionStorage.getItem('User_Key');
   idCurrent = window.sessionStorage.getItem('Id_Key');
   post:  Post = new Post('', '', new Date(), 0);
