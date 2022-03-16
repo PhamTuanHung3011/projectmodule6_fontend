@@ -1,11 +1,11 @@
 
-<div class="topbar stick">
+<div class="topbar stick" *ngIf="isLogin$ | async as isLogin">
   <div class="top-area">
 <!--    THANH TIỀM KIẾM ------------------------------>
     <div class="top-search">
       <form method="post" class="">
         <input type="text" placeholder="Search People, Pages, Groups etc">
-        <button data-ripple><i class="ti-search"></i></button>
+        <button data-ripple routerLink="/search-user"><i class="ti-search"></i></button>
       </form>
     </div>
     <!--   KẾT THÚC THANH TIỀM KIẾM ------------------------------>
@@ -284,7 +284,7 @@
             <ul class="log-out">
               <li><a routerLink="/about" title=""><i class="ti-user"></i> view profile</a></li>
               <li><a href="setting.html" title=""><i class="ti-pencil-alt"></i>edit profile</a></li>
-              <li><a href="logout.html" title=""><i class="ti-power-off"></i>log out</a></li>
+              <li><a title="" (click)="logout()"><i class="ti-power-off"></i>log out</a></li>
             </ul>
 <!--          </div>-->
         </div>

@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { ListFriendComponent } from './list-friend/list-friend.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
@@ -19,6 +18,13 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
 import { TimeLineComponent } from './time-line/time-line.component';
+import { SearchUserComponent } from './search-user/search-user.component';
+import {environment} from "../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {AngularFireModule} from "@angular/fire/compat";
+import {FriendComponent} from "./friend/friend.component";
+
+
 
 @NgModule({
   declarations: [
@@ -27,11 +33,12 @@ import { TimeLineComponent } from './time-line/time-line.component';
     AboutComponent,
     HeaderComponent,
     FooterComponent,
-    ListFriendComponent,
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
-    TimeLineComponent
+    TimeLineComponent,
+    SearchUserComponent,
+    FriendComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +50,9 @@ import { TimeLineComponent } from './time-line/time-line.component';
     MatInputModule,
     MatIconModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
   ],
   providers: [],
   bootstrap: [AppComponent]

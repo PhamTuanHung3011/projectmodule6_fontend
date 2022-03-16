@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../../service/auth/auth.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  public isLogin$: Observable<boolean> = new Observable<boolean>();
 
-  ngOnInit(): void {
+  constructor(private auth: AuthService) {
   }
 
+  public ngOnInit(): void {
+    this.isLogin$ = this.auth.islogin();
+  }
+
+  public logout(): void {
+    this.auth.logout();
+  }
 }
