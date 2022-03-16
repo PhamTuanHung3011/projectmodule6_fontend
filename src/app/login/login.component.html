@@ -18,7 +18,7 @@
               <i class="fa fa-key"></i>login
               <span>sign in now and meet the awesome Friends around the world.</span>
             </div>
-            <form class="form-login" #f="ngForm" (ngSubmit)="f.form.valid && ngSubmit()" novalidate>
+            <form class="form-login" #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate>
               <mat-error *ngIf="checkRegister" class="alert alert-primary">Create New Account succsee!</mat-error>
               <mat-form-field appearance="fill">
                 <input name="username" [(ngModel)]="form.username" matInput placeholder="User Name"
@@ -44,7 +44,7 @@
               </mat-form-field>
               <br>
 
-              <button mat-stroked-button color="accent" type="submit" > Login
+              <button mat-stroked-button color="accent" type="submit"> Login
                 <mat-icon  color="accent" matSuffix> login</mat-icon>
               </button>
 

@@ -1,0 +1,242 @@
+<section>
+  <div class="gap2 gray-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row merged20" id="page-contents">
+            <div class="user-profile">
+              <figure>
+                <div class="edit-pp">
+                  <label class="fileContainer">
+                    <i class="fa fa-camera"></i>
+                    <input type="file">
+                  </label>
+                </div>
+                <img src="assets/images/resources/profile-image.jpg" alt="">
+                <ul class="profile-controls">
+                  <li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>
+                  <li><a href="#" title="Follow" data-toggle="tooltip"><i class="fa fa-star"></i></a></li>
+                  <li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>
+                  <li>
+                    <div class="edit-seting" title="Edit Profile image"><i class="fa fa-sliders"></i>
+                      <ul class="more-dropdown">
+                        <li><a href="setting.html" title="">Update Profile Photo</a></li>
+                        <li><a href="setting.html" title="">Update Header Photo</a></li>
+                        <li><a href="setting.html" title="">Account Settings</a></li>
+                        <li><a href="support-and-help.html" title="">Find Support</a></li>
+                        <li><a class="bad-report" href="#" title="">Report Profile</a></li>
+                        <li><a href="#" title="">Block Profile</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+                <ol class="pit-rate">
+                  <li class="rated"><i class="fa fa-star"></i></li>
+                  <li class="rated"><i class="fa fa-star"></i></li>
+                  <li class="rated"><i class="fa fa-star"></i></li>
+                  <li class="rated"><i class="fa fa-star"></i></li>
+                  <li class=""><i class="fa fa-star"></i></li>
+                  <li><span>4.7/5</span></li>
+                </ol>
+              </figure>
+
+              <div class="profile-section">
+                <div class="row">
+                  <div class="col-lg-2 col-md-3">
+                    <div class="profile-author">
+                      <div class="profile-author-thumb">
+                        <img alt="author" src="assets/images/resources/author.jpg">
+                        <div class="edit-dp">
+                          <label class="fileContainer">
+                            <i class="fa fa-camera"></i>
+                            <input type="file">
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="author-content">
+                        <a class="h4 author-name" href="about.html">{{user2.name}}</a>
+                        <div class="country">{{user2.address}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-10 col-md-9">
+                    <ul class="profile-menu">
+                      <li>
+                        <a class="" routerLink="/time-line">Timeline</a>
+                      </li>
+<!--                      <li>-->
+<!--                        <a class="" [routerLink]="['/about/',user2.id]">About</a>-->
+<!--                      </li>-->
+                      <li>
+                        <a class="" routerLink="/friend">Friends</a>
+                      </li>
+                      <li>
+                        <a class="" href="timeline-photos.html">Photos</a>
+                      </li>
+                      <li>
+                        <a class="" href="timeline-videos.html">Videos</a>
+                      </li>
+                      <li>
+                        <div class="more">
+                          <i class="fa fa-ellipsis-h"></i>
+                          <ul class="more-dropdown">
+                            <li>
+                              <a href="timeline-groups.html">Profile Groups</a>
+                            </li>
+                            <li>
+                              <a href="statistics.html">Profile Analytics</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                    <ol class="folw-detail">
+                      <li><span>Posts</span><ins>101</ins></li>
+                      <li><span>Followers</span><ins>1.3K</ins></li>
+                      <li><span>Following</span><ins>22</ins></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div><!-- user profile banner  -->
+            <div class="col-lg-12">
+              <div class="central-meta postbox">
+                <span class="create-post">Create post</span>
+                <div class="new-postbox">
+                  <figure>
+                    <img src="images/resources/admin.jpg" alt="">
+                  </figure>
+                  <div class="newpst-input">
+                    <form method="post">
+                      <textarea rows="2" placeholder="Share some what you are thinking?"></textarea>
+                    </form>
+                  </div>
+                  <div class="attachments">
+                    <ul>
+                      <li>
+													<span class="add-loc">
+														<i class="fa fa-map-marker"></i>
+													</span>
+                      </li>
+                      <li>
+                        <i class="fa fa-music"></i>
+                        <label class="fileContainer">
+                          <input type="file">
+                        </label>
+                      </li>
+                      <li>
+                        <i class="fa fa-image"></i>
+                        <label class="fileContainer">
+                          <input type="file">
+                        </label>
+                      </li>
+                      <li>
+                        <i class="fa fa-video-camera"></i>
+                        <label class="fileContainer">
+                          <input type="file">
+                        </label>
+                      </li>
+                      <li>
+                        <i class="fa fa-camera"></i>
+                        <label class="fileContainer">
+                          <input type="file">
+                        </label>
+                      </li>
+                      <li class="preview-btn">
+                        <button class="post-btn-preview" type="submit" data-ripple="">Preview</button>
+                      </li>
+                    </ul>
+                    <button class="post-btn" type="submit" data-ripple="">Post</button>
+                  </div>
+                  <div class="add-location-post">
+                    <span>Drag map point to selected area</span>
+                    <div class="row">
+
+                      <div class="col-lg-6">
+                        <label class="control-label">Lat :</label>
+                        <input type="text" class="" id="us3-lat" />
+                      </div>
+                      <div class="col-lg-6">
+                        <label>Long :</label>
+                        <input type="text" class="" id="us3-lon" />
+                      </div>
+                    </div>
+                    <!-- map -->
+                    <div id="us3"></div>
+                  </div>
+                </div>
+
+              </div><!-- add post new box -->
+              <div class="loadMore">
+                <div class="central-meta item">
+                  <div class="user-post">
+                    <div class="friend-info">
+                      <figure>
+                        <img src="images/resources/nearly1.jpg" alt="">
+                      </figure>
+                      <div class="friend-name">
+                        <div class="more">
+                          <div class="more-post-optns"><i class="ti-more-alt"></i>
+                            <ul>
+                              <li><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                              <li><i class="fa fa-trash-o"></i>Delete Post</li>
+                              <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
+                              <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
+                              <li><i class="fa fa-clock-o"></i>Schedule Post</li>
+                              <li><i class="fa fa-wpexplorer"></i>Select as featured</li>
+                              <li><i class="fa fa-bell-slash-o"></i>Turn off Notifications</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <ins><a href="time-line.html" title="">Jack Carter</a> share <a href="#" title="">link</a></ins>
+                        <span><i class="fa fa-globe"></i> published: january,5 2010 19:PM </span>
+                      </div>
+                      <div class="post-meta">
+                        <figure>
+                          <a href="https://www.youtube.com/watch?v=fF382gwEnG8" title="" data-strip-group="mygroup" class="strip vdeo-link" data-strip-options="width: 700,height: 450,youtube: { autoplay: 1 }">
+                            <img src="assets/images/resources/user-post.jpg" alt="">
+                            <h2>Canada tourist spots you must visit in 2020</h2>
+                          </a>
+                        </figure>
+                        <div class="we-video-info">
+                          <ul>
+                            <li>
+																<span class="views" title="views">
+																	<i class="fa fa-eye"></i>
+																	<ins>1.2k</ins>
+																</span>
+                            </li>
+                            <li>
+                              <div class="likes heart" title="Like/Dislike">❤ <span>2K</span></div>
+                            </li>
+                            <li>
+																<span class="comment" title="Comments">
+																	<i class="fa fa-commenting"></i>
+																	<ins>52</ins>
+																</span>
+                            </li>
+
+                            <li>
+																<span>
+																	<a class="share-pst" href="#" title="Share">
+																		<i class="fa fa-share-alt"></i>
+																	</a>
+																	<ins>20</ins>
+																</span>
+                            </li>
+                          </ul>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- centerl meta -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- content -->
