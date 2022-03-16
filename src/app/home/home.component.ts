@@ -21,10 +21,12 @@ export class HomeComponent implements OnInit {
 
   @Input() userId: any;
 
-  selectedImg: any = [];
-  arrayFile : string[] = [] ;
-// @ts-ignore
+  selectedImg: any;
+  selectedImg1: any;
+  arrayFile = '' ;
 // user: Users = {};
+
+
 
   post_dto: any;
   post_dto_edit: any = {};
@@ -101,11 +103,31 @@ export class HomeComponent implements OnInit {
         ).subscribe()
     }
   }
+  submit1() {
+    if (this.selectedImg1 != null) {
+      const filePath = this.selectedImg1.name;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectedImg1).snapshotChanges()
+        .pipe(finalize(() => (fileRef.getDownloadURL()
+          .subscribe(url => {
+            this.arrayFile = url;
+            console.log(url);
+            alert("ok")
+          })))
+        ).subscribe()
+    }
+  }
 
   uploadFileImg() {
-    this.selectedImg = this.avatarDom?.nativeElement.files[0];
+    this.selectedImg = this.avatarDom?.nativeElement.files[0]
     this.submit();
   }
+
+  uploadFileImg1() {
+    this.selectedImg1 = this.avatarDom?.nativeElement.files[0]
+    this.submit1();
+  }
+
 
   showEdit(postdto: Post_dto) {
     console.log("check ham showedit")
@@ -117,9 +139,9 @@ export class HomeComponent implements OnInit {
   }
 
   edit(formEdit: any) {
-    // @ts-ignore
-    this.postService.edit(formEdit).subscribe(() => {
+    this.postService.edit(formEdit,this.tokenService.getId(), this.arrayFile).subscribe(() => {
       alert("edit thành công");
+      this.findAll()
     })
   }
 

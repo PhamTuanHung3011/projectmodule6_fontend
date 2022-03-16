@@ -70,13 +70,13 @@
                       <div class="friend-info">
                         <figure>
                           <img src="assets/images/resources/nearly1.jpg" alt="">
-                          <ins><a [routerLink]="['admin/detail', p.id]">{{p.users.name}}</a></ins>
+                          <ins><a [routerLink]="['admin/detail', p.id]">{{p?.users?.name}}</a></ins>
                         </figure>
                         <div class="friend-name">
                           <div class="more">
                             <div class="more-post-optns"><i class="ti-more-alt"></i>
                               <ul>
-                                <li *ngIf="p.users.id == idCurrent"><i  class="fa fa-pencil-square-o" data-toggle="modal" data-target="#editPost" (click)="showEdit(p)"></i>Edit Post
+                                <li *ngIf="p?.users?.id == idCurrent"><i  class="fa fa-pencil-square-o" data-toggle="modal" data-target="#editPost" (click)="showEdit(p)"></i>Edit Post
                                 </li>
                                 <li><i class="fa fa-trash-o" data-toggle="modal" data-target="#deletePost" (click)="delete(p.id)"></i>Delete Post</li>
                                 <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
@@ -357,16 +357,19 @@
         </button>
       </div>
             <div class="modal-body">
-              <form #formEdit="ngForm" (ngSubmit)="edit(formEdit.value)">
+              <form #formEdit="ngForm">
+                <div class="form-group">
+                  <label class="col-form-label">Id:</label>
+                  <input [(ngModel)]="post_dto_edit.id" name = 'id' readonly>
+                </div>
                 <div class="form-group">
                   <label class="col-form-label">Content:</label>
-
                   <input [(ngModel)]="post_dto_edit.content" name = 'content'>
-
                 </div>
                 <div class="form-group">
                   <label class="col-form-label">Img:</label>
-                  <input type="file" #uploadFile (change)="uploadFileImg()" class="form-control" name="listImage">
+
+                  <input type="file" #uploadFile (change)="uploadFileImg1()" class="form-control" name="listImage">
                   <!--            <img src="{{img.link}}" width="300" height="250">-->
                   <div >
                     <figure *ngFor="let img of post_dto_edit?.listImage">
@@ -376,12 +379,12 @@
                     </figure>
                   </div>
                 </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-secondary" (click)="edit(formEdit.value)" data-dismiss="modal">Save</button>
+                </div>
               </form>
             </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
-      </div>
     </div>
   </div>
 </div><!-- report popup -->

@@ -107,24 +107,28 @@
                   <span class="create-post">Personal Info</span>
                   <div class="personal-head">
                     <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
-                    <p>
-                      Hi, I’m John Carter, I’m 36 and I work as a Digital Designer for the “dewwater” Agency in Ontario, Canada
-                    </p>
+
                     <span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
                     <p>
-                      December 17, 1985
+                      {{user.birthday}}
                     </p>
                     <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
                     <p>
-                      +1-989-232435234
+                      {{user.phone}}
                     </p>
-                    <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
+                    <span class="f-title"><i class="fa fa-user"></i> Your Name:</span>
                     <p>
-                      B+
+                     {{user.name}}
                     </p>
                     <span class="f-title"><i class="fa fa-male"></i> Gender:</span>
                     <p>
-                      Male
+                      <select ng-model="selectedPrivacy" formControlName="gender" class="col-3 form-select form-select-sm mb-2 ml-3">
+                        <option *ngFor="let gender of genders" [value]="gender.model">{{gender.model}}</option>
+                      </select>
+                    </p>
+                    <span class="f-title"><i class="fa fa-envelope"></i> Email:</span>
+                    <p>
+                      <a href="">{{user.email}}</a>
                     </p>
                     <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
                     <p>
@@ -139,10 +143,7 @@
                       December 20, 2001
                     </p>
 
-                    <span class="f-title"><i class="fa fa-envelope"></i> Email & Website:</span>
-                    <p>
-                      <a href="wpkixx.html" title="">www.wpkixx.com</a> <a href="http://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ebbb829f858280ab92849e99868a8287c5888486">[email&#160;protected]</a>
-                    </p>
+
 
                   </div>
                 </div>
