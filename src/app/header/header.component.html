@@ -4,8 +4,8 @@
 <!--    THANH TIỀM KIẾM ------------------------------>
     <div class="top-search">
       <form method="post" class="">
-        <input type="text" placeholder="Search People, Pages, Groups etc">
-        <button data-ripple routerLink="/search-user"><i class="ti-search"></i></button>
+        <input [(ngModel)]="namesearch" name="namesearch" type="text" placeholder="Search People, Pages, Groups etc">
+        <button data-ripple data-toggle="modal" data-target="#myModal" (click)="showUserSearch(namesearch)"><i class="ti-search"></i></button>
       </form>
     </div>
     <!--   KẾT THÚC THANH TIỀM KIẾM ------------------------------>
@@ -275,7 +275,7 @@
     <div class="user-img">
       <div class="dropdown">
         <a class="user-img" data-toggle="dropdown">
-          <h5><a>Jack Carter</a></h5>
+          <h5><a>{{username}}</a></h5>
           <img src="assets/images/resources/admin.jpg" alt="">
           <span class="status f-online"></span>
         </a>
@@ -418,6 +418,42 @@
 
   </nav><!-- nav menu -->
 </div><!-- topbar -->
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Danh sách tìm kiếm</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body" *ngFor="let u of listUser">
+          <a href="notifications.html" title="">
+            <figure>
+              <img src="assets/images/resources/thumb-1.jpg" alt="">
+              <span class="status f-online"></span>
+            </figure>
+            <div class="mesg-meta">
+              <a [routerLink]="['/details-user',u.id]" data-dismiss="modal">{{u.name}} </a>
+              <span>{{u.email}}</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
 <script src="assets/js/main.min.js"></script>
 <script src="assets/js/jquery-stories.js"></script>
 <script src="assets/js/toast-notificatons.js"></script>

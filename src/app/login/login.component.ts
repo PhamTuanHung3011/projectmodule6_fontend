@@ -27,25 +27,18 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void {
-    this.authService.login(this.signInForm)}
-
-
-  ngSubmit() {
+    this.authService.login(this.signInForm)
     this.signInForm = new SignInForm(
       this.form.username,
       this.form.password
     )
     this.authService.singIn(this.signInForm).subscribe(data => {
-      console.log("data")
-      console.log(data)
       if (data.token != null) {
         this.tokenService.setId(data.id);
         this.tokenService.setToken(data.token);
         this.tokenService.setName(data.name);
         this.tokenService.setRole(data.roles);
-        this.router.navigate(['home']).then(() => {
-          window.location.reload();
-        })
+        this.router.navigate(['home']);
       }
     })
   }

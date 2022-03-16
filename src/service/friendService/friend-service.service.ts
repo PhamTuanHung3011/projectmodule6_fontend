@@ -32,6 +32,9 @@ export class FriendServiceService {
     return  this.http.delete(this.FRIEND_AIP+'/'+id);
   }
   showListFriend(id:number):Observable<any>{
-    return this.http.get(this.FRIEND_AIP+'/listfriend/'+id)
+    return this.http.get(this.FRIEND_AIP+'/addedFriend/'+window.sessionStorage.getItem('Id_Key'))
+  }
+  searchUser(name:string):Observable<any>{
+    return this.http.get(this.FRIEND_AIP+'/search_friend/'+name)
   }
 }

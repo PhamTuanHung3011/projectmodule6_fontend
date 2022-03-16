@@ -9,6 +9,7 @@ import {SearchUserComponent} from "./search-user/search-user.component";
 import {FriendComponent} from "./friend/friend.component";
 import {AuthGuard} from "./auth.guard";
 import {HeaderComponent} from "./header/header.component";
+import {DetailsUserComponent} from "./details-user/details-user.component";
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'about',component: AboutComponent,canActivate:[AuthGuard]},
   {path:'search-user',component: SearchUserComponent,canActivate:[AuthGuard]},
   {path:'friend',component: FriendComponent,canActivate:[AuthGuard]},
+  {path:'details-user/:id',component: DetailsUserComponent,canActivate:[AuthGuard]},
 ];
 
 @NgModule({

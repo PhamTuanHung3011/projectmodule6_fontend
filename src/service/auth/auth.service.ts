@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class AuthService {
+  public idFriend = -1;
   private API_SIGNUP = environment.API_LOCAL + '/signup';
   private API_SIGNIN = environment.API_LOCAL + '/signin';
   private Login:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -35,7 +36,6 @@ export class AuthService {
     // @ts-ignore
     if (signUp !== '') {
       this.Login.next(true);
-      this.router.navigate(['/home']);
     }
   }
   islogin():Observable<boolean>{

@@ -3,24 +3,39 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {map, take} from 'rxjs/operators';
 import {AuthService} from "../service/auth/auth.service";
 import {Observable} from "rxjs";
+import {TokenService} from "../service/auth/token.service";
+import {Role} from "../models/Role";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private rout: Router) {
+  roles!: string[];
+
+  constructor(private auth: AuthService, private rout: Router, private tokenService: TokenService) {
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.auth.islogin().pipe(take(1), map((isLogin: boolean) => {
-      if (!isLogin) {
-        this.rout.navigate(['']);
-        return false;
+    let url;
+
+    this.roles = this.tokenService.getRole();
+    console.log("this.roles")
+    console.log(this.roles)
+    if (this.roles == null) {
+      return false;
+    }
+    for (const routeElement of this.roles) {
+      if (routeElement == "ROLE_USER") {
+        return true;
       }
-      return true;
-    }));
+      if (routeElement == "ROLE_ADMIN") {
+        url = '/admin'
+        break;
+      }
+    }
+    return this.rout.navigate([url]);
   }
 }
 

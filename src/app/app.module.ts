@@ -23,6 +23,7 @@ import {environment} from "../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {FriendComponent} from "./friend/friend.component";
+import { DetailsUserComponent } from './details-user/details-user.component';
 
 
 
@@ -39,6 +40,7 @@ import {FriendComponent} from "./friend/friend.component";
     TimeLineComponent,
     SearchUserComponent,
     FriendComponent,
+    DetailsUserComponent,
   ],
   imports: [
     BrowserModule,

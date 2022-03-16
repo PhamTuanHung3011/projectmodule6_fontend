@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FriendServiceService} from "../../service/friendService/friend-service.service";
+import {TokenService} from "../../service/auth/token.service";
 
 @Component({
   selector: 'app-friend',
@@ -9,14 +10,17 @@ import {FriendServiceService} from "../../service/friendService/friend-service.s
 export class FriendComponent implements OnInit {
   myfriend: any
 
-  constructor(private myService: FriendServiceService, private friendService: FriendServiceService) {
+  constructor(private myService: FriendServiceService, private friendService: FriendServiceService, private tokenService: TokenService) {
   }
+  id:number = this.tokenService.getId();
 
   ngOnInit(): void {
+    this.getAllFriend()
   }
 
-  getAllFriend(id_user:number) {
-    this.myService.showListFriend(id_user).subscribe(data => {
+  public  getAllFriend() {
+    this.myService.showListFriend(this.id).subscribe(data => {
+      console.log('data==>',data)
       this.myfriend = data;
     })
   }
