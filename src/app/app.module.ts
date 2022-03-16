@@ -18,6 +18,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
+import {environment} from "../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {AngularFireModule} from "@angular/fire/compat";
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import {HttpClientModule} from "@angular/common/http";
     MatInputModule,
     MatIconModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
   ],
   providers: [],
   bootstrap: [AppComponent]

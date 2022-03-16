@@ -1,6 +1,7 @@
 import {Role} from "./Role";
 import {Gender, RoleName} from "./Enum";
 
+
 export class Users{
   id!: number;
   name!: string;

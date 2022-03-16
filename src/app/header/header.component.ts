@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  checkLogin = true;
+  // @ts-ignore
+  name_user2: string;
   constructor() { }
 
   ngOnInit(): void {
+    // @ts-ignore
+    this.name_user2 = window.sessionStorage.getItem('Name_Key')
+
   }
 
 }
