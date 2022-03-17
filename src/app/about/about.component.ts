@@ -44,8 +44,6 @@ export class AboutComponent implements OnInit {
     this.checkLogin()
     // @ts-ignore
     this.user2 = window.sessionStorage.getItem('Name_Key');
-
-
     this.editForm();
   }
 
@@ -69,7 +67,8 @@ export class AboutComponent implements OnInit {
       birthday: new FormControl(new Date()),
       address: new FormControl(''),
       avatar: new FormControl(''),
-      email: new FormControl('')
+      email: new FormControl(''),
+      status: new FormControl('')
     });
   }
 
@@ -90,6 +89,10 @@ export class AboutComponent implements OnInit {
     this.user.birthday = this.updateForm.get('birthday')?.value;
     this.user.avatar = this.updateForm.get('avatar')?.value;
     this.user.password = this.updateForm.get('password')?.value;
+    let pr = this.updateForm.get('gender')?.value;
+    if (pr == '') {
+      this.updateForm.get('gender').setValue('MALE');
+    }
     console.log(this.user);
     this.userService.edit(this.user).subscribe(value => {
       this.updateForm.patchValue(this.user);

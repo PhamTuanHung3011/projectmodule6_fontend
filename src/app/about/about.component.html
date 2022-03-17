@@ -65,13 +65,13 @@
                   <div class="col-lg-10 col-md-9">
                     <ul class="profile-menu">
                       <li>
-                        <a class="" routerLink="/time-line">Timeline</a>
+                        <a class="" [routerLink]="['/time-line/',user.id]">Timeline</a>
                       </li>
                       <li>
                         <a class="" routerLink="/profile">About</a>
                       </li>
                       <li>
-                        <a class="" routerLink="/friend">Friends</a>
+                        <a class="" [routerLink]="['/friend/',user.id]">Friends</a>
                       </li>
                       <li>
                         <a class="" href="timeline-photos.html">Photos</a>
@@ -115,15 +115,15 @@
                   <div class="personal-head">
                     <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
                     <p>
-                      Hi, I’m {{user.name}}, I’m 36 and I work as a Digital Designer for the “dewwater” Agency in Ontario, Canada
+                      Hi, I’m {{user?.name}}, I’m 36 and I work as a Digital Designer for the “dewwater” Agency in Ontario, Canada
                     </p>
                     <span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
                     <p>
-                      {{user.birthday}}
+                      {{user?.birthday}}
                     </p>
                     <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
                     <p>
-                      {{user.phone}}
+                      {{user?.phone}}
                     </p>
                     <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
                     <p>
@@ -137,11 +137,11 @@
                     </p>
                     <span class="f-title"><i class="fa fa-envelope"></i> Email:</span>
                     <p>
-                      <a href="">{{user.email}}</a>
+                      <a href="">{{user?.email}}</a>
                     </p>
                     <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
                     <p>
-                      {{user.address}}
+                      {{user?.address}}
                     </p>
                     <span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
                     <p>
