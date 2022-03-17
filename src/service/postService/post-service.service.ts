@@ -32,6 +32,9 @@ export class PostServiceService {
   findById(id: number): Observable<Post_dto> {
     return this.http.get<Post_dto>(this.FIND_ALL_POST + "/" + id);
   }
+  findPostById(id: number):Observable<Post> {
+    return this.http.get<Post>(this.FIND_ALL_POST + "/findPost/" + id);
+  }
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(this.FIND_ALL_POST + "/" + id);
@@ -44,7 +47,7 @@ export class PostServiceService {
 
   edit(post: Post, id: number): Observable<any> {
 
-    return this.http.put<any>(this.FIND_ALL_POST  + id + '/edit', post );
+    return this.http.put<any>(this.FIND_ALL_POST+ '/'+ id + '/edit', post);
   }
 
 
