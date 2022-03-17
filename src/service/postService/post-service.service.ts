@@ -59,8 +59,8 @@ export class PostServiceService {
     return  this.http.post<any>(this.FIND_ALL_POST+ "/" + id + "/createComment", comment);
   }
 
-  findAllComment() : Observable<Comment> {
-    return this.http.get<Comment>(this.FIND_ALL_POST + "/comments");
+  findAllComment() : Observable<Comment[]> {
+    return this.http.get<Comment[]>(this.FIND_ALL_POST + "/comments");
   }
 
   deleteComment(id: number) : Observable<void> {
