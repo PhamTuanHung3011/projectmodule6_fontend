@@ -30,7 +30,7 @@ import { TimeLineComponent } from './time-line/time-line.component';
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
-    TimeLineComponent
+    TimeLineComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +42,7 @@ import { TimeLineComponent } from './time-line/time-line.component';
     MatInputModule,
     MatIconModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

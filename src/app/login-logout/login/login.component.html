@@ -73,7 +73,7 @@
                 <span>sign in now and meet the awesome Friends around the world.</span>
               </div>
               <form class="form-login" #f="ngForm" (ngSubmit)="f.form.valid && ngSubmit()" novalidate>
-                <mat-error *ngIf="checkRegister" class="alert alert-primary">Create New Account succsee!</mat-error>
+                <mat-error *ngIf="checkRegister" class="alert alert-primary">Create New Account <succseedq></succseedq>!</mat-error>
                 <mat-form-field appearance="fill">
                   <input name="username" [(ngModel)]="form.username" matInput placeholder="User Name"
                          #username="ngModel" minlength="5" maxlength="30" required>
