@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 
 import {environment} from "../../environments/environment.prod";
 import {Post_dto} from "../../models/Post_dto";
+import {PostC} from "../../models/PostC";
 
 
 @Injectable({
@@ -36,17 +37,16 @@ export class PostServiceService {
     return this.http.delete<void>(this.FIND_ALL_POST + "/" + id);
   }
 
-  create(post: Post, id: number, arrLinkImg: string): Observable<any> {
-    post.users = {id: id};
-    post.listImage = [{link: arrLinkImg}];
+  create(post: Post): Observable<any> {
     console.log(post)
-    return this.http.post(this.FIND_ALL_POST, post);
+    return this.http.post(this.FIND_ALL_POST+ '/' + 'create', post);
   }
 
-  edit(post: Post, arrLinkImg: string): Observable<any> {
-    post.listImage = [{link: arrLinkImg}];
-    return this.http.put<any>(this.FIND_ALL_POST , post );
+  edit(post: Post, id: number): Observable<any> {
+
+    return this.http.put<any>(this.FIND_ALL_POST  + id + '/edit', post );
   }
+
 
   find(post: Post) {
     this.showPost = post;
