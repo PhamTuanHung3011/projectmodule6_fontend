@@ -48,7 +48,7 @@
                   <div class="col-lg-2 col-md-3">
                     <div class="profile-author">
                       <div class="profile-author-thumb">
-                        <img alt="author" src="assets/images/resources/author.jpg">
+                        <img alt="author" [src]="user.avatar">
                         <div class="edit-dp">
                           <label class="fileContainer">
                             <i class="fa fa-camera"></i>
@@ -69,7 +69,7 @@
                         <a class="" routerLink="/time-line">Timeline</a>
                       </li>
                       <li>
-                        <a class="" [routerLink]="['/about/',Iduser]">About</a>
+                        <a class="" [routerLink]="['/about']">About</a>
                       </li>
                       <li>
                         <a class="" routerLink="/friend">Friends</a>
@@ -119,11 +119,11 @@
                         <li><a href="#" title="">Block</a></li>
                         <li><a href="#" title="">UnBlock</a></li>
                         <li><a href="#" title="">Mute Notifications</a></li>
-                        <li><a href="#" title="">hide from friend list</a></li>
+                        <li><a title="" (click)="deleteFriend(f.id)">Delete</a></li>
                       </ul>
                     </div>
                     <figure>
-                      <img [src]="f.image">
+                      <img src="{{f.avatar}}">
                     </figure>
 
                     <div class="frnd-meta">
