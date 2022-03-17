@@ -22,8 +22,6 @@ export class HomeComponent implements OnInit {
   @ViewChild('uploadFile', {static: true}) public avatarDom: ElementRef | undefined
   @ViewChild('uploadFile1', {static: true}) public avatarDom1: ElementRef | undefined
 
-  @Input() userId: any;
-
   selectedImg: any = null;
   selectedImg1: any = null;
   arrfiles: any = [];
