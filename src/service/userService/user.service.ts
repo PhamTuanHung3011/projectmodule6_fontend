@@ -14,10 +14,14 @@ export class UserService {
   }
 
   findById(id: number): Observable<Users> {
-    return this.http.get<Users>(this.USER + "/" + id);
+    return this.http.get<Users>(this.USER + "/showUserDetails/" + id);
   }
 
   edit(user: Users): Observable<any> {
     return this.http.put(this.USER + user.id, user);
+  }
+
+  getAll():Observable<any>{
+    return this.http.get(this.USER+"/findAll");
   }
 }

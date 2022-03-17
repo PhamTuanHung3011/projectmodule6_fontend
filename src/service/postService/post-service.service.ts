@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Post} from "../../models/Post";
 import {Observable} from "rxjs";
-import {StatusPost} from "../../models/Enum";
+
 import {environment} from "../../environments/environment.prod";
-import {Users} from "../../models/Users";
+import {Post_dto} from "../../models/Post_dto";
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,13 @@ export class PostServiceService {
 
   showPost!: Post;
 
-  findAll(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.FIND_ALL_POST);
+  findAll(): Observable<Post_dto[]> {
+    return this.http.get<Post_dto[]>(this.FIND_ALL_POST);
+  }
+
+  //show bai post len tuong
+  findAllPostByUserCurrent( id: number): Observable<Post[]> {
+    return this.http.get<Post[]>(this.FIND_ALL_POST+ "/findAllByUserId/"+ id);
   }
 
   findById(id: number): Observable<Post> {
@@ -37,11 +43,17 @@ export class PostServiceService {
     return this.http.post(this.FIND_ALL_POST, post);
   }
 
-  edit(post: Post): Observable<any> {
-    return this.http.put(this.FIND_ALL_POST + post.id, post);
-  }
+  // edit(post: Post, arrLinkImg: string): Observable<any> {
+  //   post.listImage = [{link: arrLinkImg}];
+  //   return this.http.put(this.FIND_ALL_POST + post.id, post);
+  //
+  // }
 
   find(post: Post) {
     this.showPost = post;
+  }
+
+  edit(formEdit: any) {
+    
   }
 }
