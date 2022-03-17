@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Users} from "../../models/Users";
 import {Gender} from "../../models/Enum";
 import {ActivatedRoute} from "@angular/router";
+import {FriendServiceService} from "../../service/friendService/friend-service.service";
 
 @Component({
   selector: 'app-details-user',
@@ -14,7 +15,7 @@ export class DetailsUserComponent implements OnInit {
   id!: number;
   user!: Users;
 
-  constructor(private userService: UserService, private activatedRoute:ActivatedRoute) {
+  constructor(private userService: UserService,private friendService:FriendServiceService, private activatedRoute:ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -27,6 +28,12 @@ export class DetailsUserComponent implements OnInit {
   public showDetailsUser() {
     this.userService.findById(this.id).subscribe(data => {
       console.log("Data--->",data)
+      this.user = data;
+    })
+  }
+
+  getAll(idUser: number, idFriend: number) {
+    this.friendService.showMutualFriend(idUser, idFriend).subscribe(data => {
       this.user = data;
     })
   }

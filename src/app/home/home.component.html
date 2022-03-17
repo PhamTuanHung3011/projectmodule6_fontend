@@ -12,7 +12,7 @@
                   <span class="create-post">Create post</span>
                   <div class="new-postbox">
                     <figure>
-                      <img src="assets/images/resources/admin.jpg" alt="">
+                      <img [src]="user1.avatar" style="width: 50px;height:50px;border-radius:30px">
                     </figure>
                     <div class="newpst-input">
                       <form method="post">
@@ -79,7 +79,7 @@
                     <div class="user-post">
                       <div class="friend-info">
                         <figure>
-                          <img src="assets/images/resources/nearly1.jpg" alt="">
+                          <img [src]="user1.avatar" alt="">
                         </figure>
                         <div class="friend-name">
                           <div class="more">
@@ -95,7 +95,7 @@
                               </ul>
                             </div>
                           </div>
-                          <ins><a href="time-line.html" title="">Jack Carter</a> Post Album</ins>
+                          <ins><a href="time-line.html" title="">{{user1.name}}</a> Post Album</ins>
                           <span><i class="fa fa-globe"></i> published: September,15 2020 19:PM </span>
                         </div>
                         <div class="post-meta">

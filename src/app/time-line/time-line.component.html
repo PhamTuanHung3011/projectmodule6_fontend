@@ -45,7 +45,7 @@
                   <div class="col-lg-2 col-md-3">
                     <div class="profile-author">
                       <div class="profile-author-thumb">
-                        <img alt="author" src="assets/images/resources/author.jpg">
+                        <img alt="author" [src]="user.avatar">
                         <div class="edit-dp">
                           <label class="fileContainer">
                             <i class="fa fa-camera"></i>
@@ -55,8 +55,8 @@
                       </div>
 
                       <div class="author-content">
-                        <a class="h4 author-name" href="about.html">{{user2.name}}</a>
-                        <div class="country">{{user2.address}}</div>
+                        <a class="h4 author-name" href="about.html">{{user.name}}</a>
+                        <div class="country">{{user.address}}</div>
                       </div>
                     </div>
                   </div>
@@ -65,9 +65,9 @@
                       <li>
                         <a class="" routerLink="/time-line">Timeline</a>
                       </li>
-<!--                      <li>-->
-<!--                        <a class="" [routerLink]="['/about/',user2.id]">About</a>-->
-<!--                      </li>-->
+                      <li>
+                        <a class="" routerLink="/about">About</a>
+                      </li>
                       <li>
                         <a class="" routerLink="/friend">Friends</a>
                       </li>

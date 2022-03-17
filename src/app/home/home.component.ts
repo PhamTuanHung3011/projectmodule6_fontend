@@ -10,6 +10,7 @@ import {UserService} from "../../service/userService/user.service";
 import {PostServiceService} from "../../service/postService/post-service.service";
 import {Image} from "../../models/Image";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {Users} from "../../models/Users";
 
 @Component({
   selector: 'app-home',
@@ -40,6 +41,8 @@ export class HomeComponent implements OnInit {
   checkLogin = true;
 
   formCreate!: FormGroup;
+  user1!: Users;
+  Iduser!:any;
   constructor(private userService: UserService,private activatedRoute: ActivatedRoute,private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
 
     this.formCreate = new FormGroup({
@@ -59,12 +62,20 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.name_user2 = window.sessionStorage.getItem('Name_Key')
+    this.Iduser = window.sessionStorage.getItem('Id_Key');
     // this.users = localStorage.getItem('User_Key');
     // this.userService.findById(this.users).subscribe(value => {
     //   this.user = value;
     // });
+    this.showUserById()
   }
-
+  showUserById(){
+    this.userService.findById(this.Iduser).subscribe(data =>{
+      console.log(data)
+      this.user1 = data;
+      console.log(this.user1.name)
+    })
+  }
   findAll() {
     this.postService.findAll().subscribe(data => {
       this.post_dtos = data;

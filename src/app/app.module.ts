@@ -27,6 +27,7 @@ import { DetailsUserComponent } from './details-user/details-user.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { DetailsUserComponent } from './details-user/details-user.component';
     SearchUserComponent,
     FriendComponent,
     DetailsUserComponent,
+    // AccountSettingComponent,
   ],
   imports: [
     BrowserModule,

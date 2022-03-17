@@ -28,13 +28,16 @@ export class FriendServiceService {
   update(id: number,friendRequest : Friend) :Observable<any>{
     return this.http.put<any>(this.FRIEND_AIP+'/'+id,friendRequest)
   }
-  delete(id : number):Observable<any>{
-    return  this.http.delete(this.FRIEND_AIP+'/'+id);
+  delete(id1 : number,id2:number):Observable<any>{
+    return  this.http.delete(this.FRIEND_AIP+'/deleteFriend/'+id1+'/'+id2);
   }
   showListFriend(id:number):Observable<any>{
     return this.http.get(this.FRIEND_AIP+'/addedFriend/'+window.sessionStorage.getItem('Id_Key'))
   }
   searchUser(name:string):Observable<any>{
     return this.http.get(this.FRIEND_AIP+'/search_friend/'+name)
+  }
+  showMutualFriend(idUser1:number,idUser2:number):Observable<any>{
+    return this.http.get(this.FRIEND_AIP+'/listMutualFriends/'+idUser1+'/'+idUser2)
   }
 }
