@@ -1,0 +1,100 @@
+<section>
+  <div class="gap no-gap signin whitish medium-opacity register">
+    <div class="bg-image" style="background-image:url(assets/images/resources/theme-bg.jpg)"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="big-ad">
+            <figure><img src="assets/images/logo2.png" alt=""></figure>
+            <h1>Welcome to the Pitnik</h1>
+            <p>
+              Pitnik is a social network template that can be used to connect people. use this template for multipurpose social activities like job, dating, posting, bloging and much more. Now join & Make Cool Friends around the world !!!
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="we-login-register">
+            <div class="form-title">
+              <i class="fa fa-key"></i>Sign Up
+              <span>Sign Up now and meet the awesome friends around the world.</span>
+            </div>
+            <form class="form-register" #f="ngForm" (ngSubmit)="f.form.valid && ngSubmit()" novalidate>
+              <mat-error class="alert alert-primary">{{status}}</mat-error>
+
+              <!--Name -->
+              <mat-form-field appearance="fill">
+                <input name="name" [(ngModel)]="form.name" matInput placeholder="Name" #name="ngModel"
+                       minlength="3" maxlength="30" required>
+                <mat-icon color="accent" matSuffix> perm_identity </mat-icon>
+
+                <mat-error *ngIf="name.hasError('required')"> The name is required</mat-error>
+                <mat-error *ngIf="name.hasError('minlength')"> The name must more than 3 character</mat-error>
+              </mat-form-field>
+              <br>
+
+
+              <!--User name -->
+              <mat-form-field appearance="fill">
+                <input name="username" [(ngModel)]="form.username" matInput placeholder="User Name"
+                       #username="ngModel" minlength="5" maxlength="30" required>
+                <mat-icon color="accent" matSuffix> account_circle </mat-icon>
+                <mat-error *ngIf="username.hasError('required')"> The username is required</mat-error>
+                <mat-error *ngIf="username.hasError('minlength')"> The username must more than 5 character
+                </mat-error>
+              </mat-form-field>
+              <br>
+
+
+              <!--Email -->
+              <mat-form-field appearance="fill">
+                <!--                          <mat-label> Email: </mat-label>-->
+                <input name="email" [(ngModel)]="form.email" matInput placeholder="email" [formControl]="emailFormControl" required>
+                <mat-icon color="accent" matSuffix> email</mat-icon>
+                <mat-error *ngIf="emailFormControl.hasError('required')">The email is required!</mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('email')">The email is invalided</mat-error>
+              </mat-form-field>
+              <br>
+
+
+
+
+              <!--Password -->
+              <mat-form-field  appearance="fill">
+                <input name="password" [(ngModel)]="form.password" matInput [type]="hide? 'password' : 'text'" placeholder="password" #password="ngModel"
+                       minlength="6" maxlength="100" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-lable]="'Hide password'" [attr.aria-pressed]="hide" >
+                  <mat-icon color="accent">{{hide ? 'visibility_off': 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="password.hasError('minlength')">The password must more than 6 character </mat-error>
+                <mat-error *ngIf="password.hasError('maxlength')"></mat-error>
+              </mat-form-field>
+              <br>
+
+              <mat-form-field  appearance="fill">
+                <input name="password2" matInput [type]="hide? 'password2' : 'text'" placeholder="re password" [(ngModel)] = "passwordCheck"
+                       (change)="checkPass()" minlength="6" maxlength="100" required>
+                <p *ngIf="isPasswordCheck "> vui long nhap lai mat khau trung </p>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-lable]="'Hide password'" [attr.aria-pressed]="hide" >
+                  <mat-icon color="accent">{{hide ? 'visibility_off': 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+              <br><br>
+
+              <button type="submit" [disabled]="isPasswordCheck">
+                Register
+              </button>
+
+              <!--                        <a class="forgot underline" href="#" title="">forgot password?</a>-->
+            </form>
+            <a data-ripple="" title="" href="#" class="with-smedia facebook"><i class="fa fa-facebook"></i></a>
+            <a data-ripple="" title="" href="#" class="with-smedia twitter"><i class="fa fa-twitter"></i></a>
+            <a data-ripple="" title="" href="#" class="with-smedia instagram"><i class="fa fa-instagram"></i></a>
+            <a data-ripple="" title="" href="#" class="with-smedia google"><i class="fa fa-google-plus"></i></a>
+            <span>already have an account? <a class="we-account underline" href="#" title="">Sign in</a></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
