@@ -9,7 +9,6 @@ import {SearchUserComponent} from "./search-user/search-user.component";
 import {FriendComponent} from "./friend/friend.component";
 
 import {HeaderComponent} from "./header/header.component";
-import {DetailsUserComponent} from "./details-user/details-user.component";
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -20,7 +19,7 @@ const routes: Routes = [
   {path:'about/:id',component: AboutComponent},
   {path:'search-user',component: SearchUserComponent},
   {path:'friend/:id',component: FriendComponent},
-  {path:'details-user/:id',component: DetailsUserComponent},
+  // {path:'details-user/:id',component: DetailsUserComponent},
 ];
 
 @NgModule({

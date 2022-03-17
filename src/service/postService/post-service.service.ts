@@ -5,8 +5,7 @@ import {Observable} from "rxjs";
 
 import {environment} from "../../environments/environment.prod";
 import {Post_dto} from "../../models/Post_dto";
-import {PostC} from "../../models/PostC";
-import {C} from "@angular/cdk/keycodes";
+import {Comment} from "../../models/Comment";
 
 
 @Injectable({
@@ -66,6 +65,14 @@ export class PostServiceService {
   deleteComment(id: number) : Observable<void> {
     return this.http.delete<void>(this.FIND_ALL_POST + "/" + id + "/deleteComment")
   }
+
+  // editComment(comment: Comment, id: number) : Observable<any> {
+  //   return this.http.put<any>(this.FIND_ALL_POST + "/" + id + "editComment" , comment)
+  // }
+
+  // findCommentById(id: number): Observable<Comment> {
+  //   return this.http.get<Comment>(this.FIND_ALL_POST + "/" + id);
+  // }
 
 
   find(post: Post) {

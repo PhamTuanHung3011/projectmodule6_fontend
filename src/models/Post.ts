@@ -7,7 +7,7 @@ export class Post{
   isPublic!: boolean;
   time!: Date;
   users!: any;
-  // comment!: Comment;
+  comment!: Comment;
   image!: any;
 
 
