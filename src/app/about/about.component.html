@@ -57,7 +57,7 @@
                       </div>
 
                       <div class="author-content">
-                        <a class="h2 author-name" href="about.html">{{user.name}}</a>
+                        <a class="h2 author-name" href="about.html">{{curentUser.name}}</a>
                         <div class="country">Ontario, CA</div>
                       </div>
                     </div>
@@ -65,13 +65,13 @@
                   <div class="col-lg-10 col-md-9">
                     <ul class="profile-menu">
                       <li>
-                        <a class="" routerLink="/time-line">Timeline</a>
+                        <a class="" [routerLink]="['/time-line/',user.id]">Timeline</a>
                       </li>
                       <li>
                         <a class="" routerLink="/profile">About</a>
                       </li>
                       <li>
-                        <a class="" routerLink="/friend">Friends</a>
+                        <a class="" [routerLink]="['/friend/',user.id]">Friends</a>
                       </li>
                       <li>
                         <a class="" href="timeline-photos.html">Photos</a>
@@ -115,15 +115,11 @@
                   <div class="personal-head">
                     <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
                     <p>
-                      Hi, I’m {{user.name}}, I’m 36 and I work as a Digital Designer for the “dewwater” Agency in Ontario, Canada
-                    </p>
-                    <span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
-                    <p>
-                      {{user.birthday}}
+                      Hi, I’m {{user?.name}}, I’m 36 and I work as a Digital Designer for the “dewwater” Agency in Ontario, Canada
                     </p>
                     <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
                     <p>
-                      {{user.phone}}
+                      {{user?.phone}}
                     </p>
                     <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
                     <p>
@@ -131,20 +127,28 @@
                     </p>
                     <span class="f-title"><i class="fa fa-male"></i> Gender:</span>
                     <p>
-                      {{user.gender}}
+                      <select ng-model="selectedPrivacy" formControlName="gender" class="col-3 form-select form-select-sm mb-2 ml-3">
+                        <option *ngFor="let gender of genders" [value]="gender.model">{{gender.model}}</option>
+                      </select>
+                    </p>
+                    <span class="f-title"><i class="fa fa-envelope"></i> Email:</span>
+                    <p>
+                      <a href="">{{user?.email}}</a>
                     </p>
                     <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
                     <p>
-                      {{user.address}}
+                      {{user?.address}}
                     </p>
                     <span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
                     <p>
                       UI/UX Designer
                     </p>
-                    <span class="f-title"><i class="fa fa-envelope"></i> Email & Website:</span>
+                    <span class="f-title"><i class="fa fa-handshake-o"></i> Joined:</span>
                     <p>
-                      {{user.email}}
+                      December 20, 2001
                     </p>
+
+
 
 
 

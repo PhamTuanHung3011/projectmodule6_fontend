@@ -18,7 +18,7 @@
               <i class="fa fa-key"></i>login
               <span>sign in now and meet the awesome Friends around the world.</span>
             </div>
-            <form class="form-login" #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate>
+            <form class="form-login" #f="ngForm" (ngSubmit)="f.form.valid && ngSubmit()" novalidate>
               <mat-error *ngIf="checkRegister" class="alert alert-primary">Create New Account succsee!</mat-error>
               <mat-form-field appearance="fill">
                 <input name="username" [(ngModel)]="form.username" matInput placeholder="User Name"
@@ -50,7 +50,6 @@
 
             </form>
             <a class="with-smedia facebook" routerLink="/home" title="" data-ripple=""><i class="fa fa-facebook"></i></a>
-            <a class="with-smedia twitter" href="#" title="" data-ripple=""><i class="fa fa-twitter"></i></a>
             <a class="with-smedia instagram" href="#" title="" data-ripple=""><i class="fa fa-instagram"></i></a>
             <a class="with-smedia google" href="#" title="" data-ripple=""><i class="fa fa-google-plus"></i></a>
             <span>don't have an account? <a class="we-account underline" routerLink="/register" title="">register now</a></span>

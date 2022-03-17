@@ -1,11 +1,11 @@
 import {Users} from "./Users";
-import {DatePipe} from "@angular/common";
 
 export class Comment{
   id!: number;
   content!: string;
   date_Comment!: Date;
-  users!: Users;
+  users!: any;
+  post!: any;
 
 
   constructor(id: number, content: string, date_Comment: Date ) {

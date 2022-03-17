@@ -1,5 +1,6 @@
 import {Users} from "./Users";
 import {Image} from "./Image";
+import {Post} from "./Post";
 
 
 export class Post_dto {
@@ -12,6 +13,7 @@ export class Post_dto {
   listImage!: Image[];
 
 
+
   constructor(id: number, content: string, status: string, date_Post: Date, count_Like: number, users: Users, listImage: Image[]) {
     this.id = id;
     this.content = content;
@@ -21,4 +23,5 @@ export class Post_dto {
     this.users = users;
     this.listImage = listImage;
   }
+
 }

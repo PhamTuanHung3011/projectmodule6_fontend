@@ -18,10 +18,10 @@ export class TokenService {
   constructor(private router: Router) {
   }
 
-  public setUser(users: Users) {
+  public setUser(user: Users) {
     window.sessionStorage.removeItem(USERS);
     // @ts-ignore
-    window.sessionStorage.setItem(USERS, users);
+    window.sessionStorage.setItem(USERS, user);
   }
 
   // @ts-ignore
@@ -60,8 +60,8 @@ export class TokenService {
 
     if (sessionStorage.getItem(TOKEN_KEY)) {
       // @ts-ignore
-      JSON.parse(sessionStorage.getItem(ROLE_KEY)).forEach(role => {
-        this.roles.push(role.authority)
+      JSON.parse(sessionStorage.getItem(ROLE_KEY)).forEach(roles => {
+        this.roles.push(roles.authority)
       })
     }
     return this.roles;
