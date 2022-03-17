@@ -186,14 +186,6 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  edit(formEdit: any) {
-    console.log("vao form edit")
-    // @ts-ignore
-    this.postService.edit(formEdit).subscribe(() => {
-      alert("edit thành công");
-    })
-  }
-
   delete(id: number) {
     this.postService.delete(id).subscribe(() => {
       alert("xóa thành công");

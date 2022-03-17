@@ -64,7 +64,6 @@ export class AboutComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(32)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]),
       phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(15)]),
-      birthday: new FormControl(new Date()),
       address: new FormControl(''),
       avatar: new FormControl(''),
       email: new FormControl(''),
@@ -86,7 +85,6 @@ export class AboutComponent implements OnInit {
     this.user.phone = this.updateForm.get('phone')?.value;
     this.user.email = this.updateForm.get('email')?.value;
     this.user.address = this.updateForm.get('address')?.value;
-    this.user.birthday = this.updateForm.get('birthday')?.value;
     this.user.avatar = this.updateForm.get('avatar')?.value;
     this.user.password = this.updateForm.get('password')?.value;
     let pr = this.updateForm.get('gender')?.value;
