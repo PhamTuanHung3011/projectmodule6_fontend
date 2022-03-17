@@ -22,6 +22,7 @@ import { TimeLineComponent } from './time-line/time-line.component';
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {environment} from "../environments/environment";
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
-    TimeLineComponent
+    TimeLineComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,

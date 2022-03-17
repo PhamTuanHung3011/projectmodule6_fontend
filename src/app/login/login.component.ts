@@ -35,6 +35,9 @@ export class LoginComponent implements OnInit {
       console.log(data)
       if(data.token !=null) {
         this.tokenService.setToken(data.token);
+        console.log("data.id")
+        console.log(data.id)
+        this.tokenService.setId(data.id);
         // @ts-ignore
         this.tokenService.setUser(JSON.stringify(data.users));
         this.router.navigate(['home']).then(() => {
