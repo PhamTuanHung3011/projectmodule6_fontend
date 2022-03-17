@@ -24,8 +24,7 @@ import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {FriendComponent} from "./friend/friend.component";
 import { DetailsUserComponent } from './details-user/details-user.component';
-
-
+import {AccountSettingComponent} from "./account-setting/account-setting.component";
 
 
 @NgModule({
@@ -42,7 +41,7 @@ import { DetailsUserComponent } from './details-user/details-user.component';
     SearchUserComponent,
     FriendComponent,
     DetailsUserComponent,
-    // AccountSettingComponent,
+    AccountSettingComponent,
   ],
   imports: [
     BrowserModule,
