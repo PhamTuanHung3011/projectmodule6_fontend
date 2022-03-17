@@ -66,13 +66,17 @@ export class PostServiceService {
     return this.http.delete<void>(this.FIND_ALL_POST + "/" + id + "/deleteComment")
   }
 
-  // editComment(comment: Comment, id: number) : Observable<any> {
-  //   return this.http.put<any>(this.FIND_ALL_POST + "/" + id + "editComment" , comment)
-  // }
+  findAllCommentByPostId(postId : number) : Observable<any> {
+    return  this.http.get<any> (this.FIND_ALL_POST + "/" + postId + "/findCommentByPostId")
+  }
 
-  // findCommentById(id: number): Observable<Comment> {
-  //   return this.http.get<Comment>(this.FIND_ALL_POST + "/" + id);
-  // }
+  editComment(comment: Comment, id: number) : Observable<any> {
+    return this.http.put<any>(this.FIND_ALL_POST + "/" + id + "/editComment" , comment)
+  }
+
+  findCommentById(id: number): Observable<Comment> {
+    return this.http.get<Comment>(this.FIND_ALL_POST + "/" + id + "/findCommentById");
+  }
 
 
   find(post: Post) {

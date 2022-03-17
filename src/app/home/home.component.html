@@ -72,16 +72,16 @@
                       <div class="friend-info">
                         <figure>
                           <img src="assets/images/resources/nearly1.jpg" alt="">
-                          <ins><a [routerLink]="['admin/detail', p.id]">{{p?.users?.name}}</a></ins>
+                          <ins><a [routerLink]="['admin/detail', p.post.id]">{{p?.post?.users?.name}}</a></ins>
                         </figure>
                         <div class="friend-name">
                           <div class="more">
                             <div class="more-post-optns"><i class="ti-more-alt"></i>
                               <ul>
-                                <li *ngIf="p?.users?.id == userCurrent.id"><i  class="fa fa-pencil-square-o" data-toggle="modal"
-                                                                               data-target="#editPost" (click)="showEdit(p)"></i>Edit Post
+                                <li *ngIf="p?.post?.users?.id == userCurrent.id"><i  class="fa fa-pencil-square-o" data-toggle="modal"
+                                                                               data-target="#editPost" (click)="showEdit(p?.post)"></i>Edit Post
                                 </li>
-                                <li><i class="fa fa-trash-o" data-toggle="modal" data-target="#deletePost" (click)="delete(p.id)"></i>Delete Post</li>
+                                <li><i class="fa fa-trash-o" data-toggle="modal" data-target="#deletePost" (click)="delete(p?.post?.id)"></i>Delete Post</li>
                                 <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
                                 <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
                               </ul>
@@ -91,10 +91,10 @@
                         </div>
                         <div class="post-meta">
 
-                          <span><i class="fa fa-globe"></i>{{p.time}}</span>
+                          <span><i class="fa fa-globe"></i>{{p?.post?.time}}</span>
 
                           <p>
-                            {{p.content}}
+                            {{p?.post?.content}}
                           </p>
                           <figure>
                             <div class="img-bunch">
@@ -102,7 +102,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                   <figure>
                                     <a >
-                                      <img src="{{p.image}}">
+                                      <img src="{{p?.post?.image}}">
                                     </a>
                                   </figure>
                                 </div>
@@ -149,7 +149,7 @@
                           </div>
                         </div>
 <!--                        comment-->
-                                                <app-comments [postId] = p.id ></app-comments>
+                                                <app-comments [postId] = p?.post?.id ></app-comments>
 
                       </div>
 

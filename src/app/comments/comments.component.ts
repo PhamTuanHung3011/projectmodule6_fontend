@@ -27,6 +27,7 @@ export class CommentsComponent implements OnInit {
   });
   // @ts-ignore
   result: boolean;
+
   // @ts-ignore
   contentComment: string;
   // @ts-ignore
@@ -54,6 +55,29 @@ export class CommentsComponent implements OnInit {
     this.getAll();
   }
 
+
+
+  getAll(){
+    this.service.findAllComment().subscribe(
+      result => {
+        console.log(result)
+        this.comments = result;
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
+  deleteComment(commentId: number) {
+    this.service.deleteComment(commentId).subscribe(
+      ()=> {
+        this.getAll();
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
+
   createComment() {
     this.content = this.formComment.get('content')?.value;
 
@@ -73,44 +97,27 @@ export class CommentsComponent implements OnInit {
 
   }
 
-  getAll(){
-    this.service.findAllComment().subscribe(
-      result => {
-        this.comments = result;
-      }, error => {
-        console.log(error);
-      }
+  showEditComment(comment: Comment) {
+    console.log("check ham showedit")
+    this.service.findCommentById(comment.id).subscribe((data) => {
+      console.log("show data", data)
+      this.contentComment = data.content ;
+      this.id = data.id;
+    })
+  }
+
+  ngSubmitEditComment() {
+    console.log("this.id")
+    console.log(this.id)
+    // @ts-ignore
+    this.postComment = new Comment(
+      this.contentComment,
     )
+    this.service.editComment(this.postComment,this.id).subscribe(data => {
+      alert("OK")
+      this.getAll();
+    })
   }
-
-  deleteComment(commentId: number) {
-    this.service.delete(commentId).subscribe(
-      ()=> {
-        this.getAll();
-      }, error => {
-        console.log(error);
-      }
-    );
-  }
-
-  // showEditComment(comment: Comment) {
-  //   console.log("check ham showedit")
-  //   this.service.findCommentById(comment.id).subscribe((data) => {
-  //     console.log("show data", data)
-  //     this.contentComment = data.content ;
-  //     this.id = data.id;
-  //   })
-  // }
-  //
-  // ngSubmitEditComment() {
-  //   // @ts-ignore
-  //   this.postComment = new Comment(
-  //     this.contentComment,
-  //   )
-  //   this.service.editComment(this.postComment,this.id).subscribe(data => {
-  //     this.getAll();
-  //   })
-  // }
 
   checkId(userCurrentId: any, userId: any): boolean {
     if (userCurrentId != userId) {
