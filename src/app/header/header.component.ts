@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {FriendServiceService} from "../../service/friendService/friend-service.service";
 import {Users} from "../../models/Users";
 import {TokenService} from "../../service/auth/token.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../service/userService/user.service";
 
 @Component({
@@ -21,18 +21,22 @@ export class HeaderComponent implements OnInit {
   user1!:Users;
   nameUser!:any;
   nameUser1!:any;
-  constructor(private auth: AuthService,private myService: FriendServiceService, private router: Router,private userService:UserService) {
+  id:any;
+  constructor( private activatedRoute:ActivatedRoute,private auth: AuthService,private myService: FriendServiceService, private router: Router,private userService:UserService) {
   }
 
   public ngOnInit(): void {
+    this.activatedRoute.params.subscribe((data) => {
+      this.id = data['id']
     this.isLogin$ = this.auth.islogin();
     this.Iduser = window.sessionStorage.getItem('Id_Key');
     this.nameUser1 = window.sessionStorage.getItem('Name_Key');
-    console.log(this.nameUser)
-    this.showUserById()
+    console.log(this.nameUser);
+    this.showUserById();
+  })
   }
 
-  showUserById(){
+  showUserById():void{
     this.userService.findById(this.Iduser).subscribe(data =>{
       console.log(data)
       this.user1 = data;

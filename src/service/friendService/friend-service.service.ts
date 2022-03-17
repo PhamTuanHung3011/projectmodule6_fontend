@@ -32,12 +32,15 @@ export class FriendServiceService {
     return  this.http.delete(this.FRIEND_AIP+'/deleteFriend/'+id1+'/'+id2);
   }
   showListFriend(id:number):Observable<any>{
-    return this.http.get(this.FRIEND_AIP+'/addedFriend/'+window.sessionStorage.getItem('Id_Key'))
+    return this.http.get(this.FRIEND_AIP+'/addedFriend/'+id);
   }
   searchUser(name:string):Observable<any>{
     return this.http.get(this.FRIEND_AIP+'/search_friend/'+name)
   }
   showMutualFriend(idUser1:number,idUser2:number):Observable<any>{
     return this.http.get(this.FRIEND_AIP+'/listMutualFriends/'+idUser1+'/'+idUser2)
+  }
+  waitMakeFriend(idUser:number,idFriend:number):Observable<any>{
+    return this.http.get(this.FRIEND_AIP+'/waitMakeFriend/'+idUser+'/'+idFriend)
   }
 }

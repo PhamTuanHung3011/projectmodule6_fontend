@@ -58,7 +58,7 @@
                       </div>
 
                       <div class="author-content">
-                        <a class="h4 author-name" href="about.html">{{user.name}}</a>
+                        <a class="h4 author-name" [routerLink]="['/time-line',user.id]">{{user.name}}</a>
                         <div class="country">{{user.address}}</div>
                       </div>
                     </div>
@@ -66,13 +66,13 @@
                   <div class="col-lg-10 col-md-9">
                     <ul class="profile-menu">
                       <li>
-                        <a class="" routerLink="/time-line">Timeline</a>
+                        <a class="" [routerLink]="['/time-line',user.id]">Timeline</a>
                       </li>
                       <li>
-                        <a class="" [routerLink]="['/about']">About</a>
+                        <a class="" [routerLink]="['/about',user.id]">About</a>
                       </li>
                       <li>
-                        <a class="" routerLink="/friend">Friends</a>
+                        <a class="" [routerLink]="['/friend',user.id]">Friends</a>
                       </li>
                       <li>
                         <a class="" href="timeline-photos.html">Photos</a>
@@ -128,7 +128,7 @@
 
                     <div class="frnd-meta">
                       <div class="frnd-name">
-                        <a href="#" title="">{{f.name}}</a>
+                        <a [routerLink]="['/time-line',f.id]">{{f.name}}</a>
                         <span>Los Angeles, CA</span>
                       </div>
                       <a class="send-mesg" href="#" title="">Message</a>

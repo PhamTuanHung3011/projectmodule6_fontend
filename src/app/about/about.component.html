@@ -55,7 +55,7 @@
                       </div>
 
                       <div class="author-content">
-                        <a class="h2 author-name" href="about.html">{{user.name}}</a>
+                        <a class="h2 author-name" [routerLink]="['/time-line',user.id]" >{{user.name}}</a>
                         <div class="country">Ontario, CA</div>
                       </div>
                     </div>
@@ -63,13 +63,13 @@
                   <div class="col-lg-10 col-md-9">
                     <ul class="profile-menu">
                       <li>
-                        <a class="" routerLink="/time-line">Timeline</a>
+                        <a class="" [routerLink]="['/time-line',user.id]">Timeline</a>
                       </li>
                       <li>
-                        <a class="" routerLink="/profile">About</a>
+                        <a class="" [routerLink]="['/about',user.id]">About</a>
                       </li>
                       <li>
-                        <a class="" routerLink="/friend">Friends</a>
+                        <a class="" [routerLink]="['/friend',user.id]">Friends</a>
                       </li>
                       <li>
                         <a class="" href="timeline-photos.html">Photos</a>

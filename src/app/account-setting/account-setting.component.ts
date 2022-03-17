@@ -31,7 +31,7 @@
 //       password:new FormControl(''),
 //       avatar:new FormControl(''),
 //       birthday:new FormControl(''),
-//       gender:new FormControl(),
+//       gender:new FormControl(''),
 //
 //     })
 //     this.Iduser = window.sessionStorage.getItem('Id_Key');

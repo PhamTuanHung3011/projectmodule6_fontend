@@ -68,7 +68,7 @@
                         <a class="" [routerLink]="['/time-line/',user.id]">Timeline</a>
                       </li>
                       <li>
-                        <a class="" routerLink="/profile">About</a>
+                        <a class="" [routerLink]="['/about/',user.id]">About</a>
                       </li>
                       <li>
                         <a class="" [routerLink]="['/friend/',user.id]">Friends</a>
@@ -157,7 +157,7 @@
             </div>
             <div class="col-lg-8 col-md-8" style="float: right">
               <div class="central-meta">
-                <span class="create-post">List Mutual Friend <a href="#" title="">See All</a></span>
+                <span class="create-post">List Mutual Friend <a (click)="getAll(user.id)" title="">See All</a></span>
                 <div class="row">
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="fav-play">
