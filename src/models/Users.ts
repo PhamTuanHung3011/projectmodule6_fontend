@@ -12,11 +12,10 @@ export class Users{
   password!: string;
   avatar!: string;
   role!: Role;
-  birthday!: Date;
   roleName!: RoleName;
 
 
-  constructor(id: number, name: string, username: string, email: string, phone: string, address: string, gender: Gender, password: string, avatar: string, role: Role, birthday: Date) {
+  constructor(id: number, name: string, username: string, email: string, phone: string, address: string, gender: string, password: string, avatar: string, role: Role, roleName: RoleName) {
     this.id = id;
     this.name = name;
     this.username = username;
@@ -27,6 +26,6 @@ export class Users{
     this.password = password;
     this.avatar = avatar;
     this.role = role;
-    this.birthday = birthday;
+    this.roleName = roleName;
   }
 }

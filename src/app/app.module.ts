@@ -25,6 +25,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {FriendComponent} from "./friend/friend.component";
 import { DetailsUserComponent } from './details-user/details-user.component';
 import { ChatComponent } from './chat/chat.component';
+import { CommentsComponent } from './comments/comments.component';
 
 
 
@@ -43,6 +44,7 @@ import { ChatComponent } from './chat/chat.component';
     FriendComponent,
     DetailsUserComponent,
     ChatComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,

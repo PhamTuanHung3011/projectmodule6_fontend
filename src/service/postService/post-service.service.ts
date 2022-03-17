@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 
 import {environment} from "../../environments/environment.prod";
 import {Post_dto} from "../../models/Post_dto";
+import {Comment} from "../../models/Comment";
 
 
 @Injectable({
@@ -28,32 +29,54 @@ export class PostServiceService {
     return this.http.get<Post[]>(this.FIND_ALL_POST+ "/findAllByUserId/"+ id);
   }
 
-  findById(id: number): Observable<Post> {
-    return this.http.get<Post>(this.FIND_ALL_POST + "/" + id);
+  findById(id: number): Observable<Post_dto> {
+    return this.http.get<Post_dto>(this.FIND_ALL_POST + "/" + id);
+  }
+  findPostById(id: number):Observable<Post> {
+    return this.http.get<Post>(this.FIND_ALL_POST + "/findPost/" + id);
   }
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(this.FIND_ALL_POST + "/" + id);
   }
 
-  create(post: Post, id: number, arrLinkImg: string): Observable<any> {
-    post.users = {id: id};
-    post.listImage = [{link: arrLinkImg}];
+  create(post: Post): Observable<any> {
     console.log(post)
-    return this.http.post(this.FIND_ALL_POST, post);
+    return this.http.post(this.FIND_ALL_POST+ '/' + 'create', post);
   }
 
-  // edit(post: Post, arrLinkImg: string): Observable<any> {
-  //   post.listImage = [{link: arrLinkImg}];
-  //   return this.http.put(this.FIND_ALL_POST + post.id, post);
-  //
+  edit(post: Post, id: number): Observable<any> {
+
+    return this.http.put<any>(this.FIND_ALL_POST+ '/'+ id + '/edit', post);
+  }
+
+  getLikeNumber(): Observable<any> {
+    return this.http.get<any>(this.FIND_ALL_POST);
+  }
+
+  createComment(comment: Comment, id: number) : Observable<any> {
+    return  this.http.post<any>(this.FIND_ALL_POST+ "/" + id + "/createComment", comment);
+  }
+
+  findAllComment() : Observable<Comment[]> {
+    return this.http.get<Comment[]>(this.FIND_ALL_POST + "/comments");
+  }
+
+  deleteComment(id: number) : Observable<void> {
+    return this.http.delete<void>(this.FIND_ALL_POST + "/" + id + "/deleteComment")
+  }
+
+  // editComment(comment: Comment, id: number) : Observable<any> {
+  //   return this.http.put<any>(this.FIND_ALL_POST + "/" + id + "editComment" , comment)
   // }
+
+  // findCommentById(id: number): Observable<Comment> {
+  //   return this.http.get<Comment>(this.FIND_ALL_POST + "/" + id);
+  // }
+
 
   find(post: Post) {
     this.showPost = post;
   }
 
-  edit(formEdit: any) {
-    
-  }
 }

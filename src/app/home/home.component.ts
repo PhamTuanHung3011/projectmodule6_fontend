@@ -1,15 +1,17 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {finalize} from "rxjs";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute, Router} from "@angular/router";
-import {TokenService} from "../../service/auth/token.service";
 import {Post} from "../../models/Post";
-import {Post_dto} from "../../models/Post_dto";
-import {UserService} from "../../service/userService/user.service";
-import {PostServiceService} from "../../service/postService/post-service.service";
 import {Image} from "../../models/Image";
+import {UserService} from "../../service/userService/user.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {PostServiceService} from "../../service/postService/post-service.service";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {TokenService} from "../../service/auth/token.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {finalize} from "rxjs";
+import {Post_dto} from "../../models/Post_dto";
+import {Users} from "../../models/Users";
+import {PostC} from "../../models/PostC";
 
 @Component({
   selector: 'app-home',
@@ -17,66 +19,134 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   @ViewChild('uploadFile', {static: true}) public avatarDom: ElementRef | undefined
-
-  @Input() userId : any;
+  @ViewChild('uploadFile1', {static: true}) public avatarDom1: ElementRef | undefined
 
   selectedImg: any = null;
-  arrayFile = '';
-  status: any;
-  // @ts-ignore
-  // user: Users = {};
-  // users: any;
-  post_dtos: Post_dto[] = [];
-  // posts: Post[] = []
-  post: Post = new Post('','',new Date(),0);
-  // @ts-ignore
-  post_dto: Post_dto = new Post_dto(0,"","",new Date(),0,[])
-  img: Image = new Image(0,"");
+  selectedImg1: any = null;
+  arrfiles: any = [];
+  arrfiles1: any = [];
+  arrayPicture: string[] = [];
 
+
+
+  idEdit!: number
+  post!:  Post;
+  postEdit!: Post;
   // @ts-ignore
-  name_user2: string;
-  checkLogin = true;
+  content: string;
+  // @ts-ignore
+  image: string;
+  // @ts-ignore
+  contentEdit: string;
+  imgEdit!: string;
 
-  formCreate!: FormGroup;
-  constructor(private userService: UserService,private activatedRoute: ActivatedRoute,private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
 
-    this.formCreate = new FormGroup({
-      id: new FormControl(this.post?.id),
-      content: new FormControl(this.post?.content,Validators.minLength(6)),
-      status: new FormControl(this.post?.status),
-      link: new FormControl(this.img?.link),
-    })
-    this.status = [
+
+
+  posts: Post[] = [];
+
+ // @ts-ignore
+  users: Users;
+  // @ts-ignore
+  userCurrent: Users;
+
+
+  post_dto: any;
+  post_dto_edit: any = {};
+  // @ts-ignore
+  id: number;
+  idCurrent=window.sessionStorage.getItem('Id_Key');
+
+
+// @ts-ignore
+  status = 'Public';
+  statuss: any;
+
+  formCreate: any;
+
+  constructor (private userService: UserService, private activatedRoute: ActivatedRoute, private http: HttpClient, private postService: PostServiceService, private router: Router, private storage: AngularFireStorage, private tokenService: TokenService) {
+
+    // @ts-ignore
+    this.statuss = [
       {model: 'Public'},
       {model: 'Private'},
       {model: 'Friend only'}
     ];
-    this.findAll()
+
   }
 
   ngOnInit(): void {
     // @ts-ignore
-    this.name_user2 = window.sessionStorage.getItem('Name_Key')
-    // this.users = localStorage.getItem('User_Key');
-    // this.userService.findById(this.users).subscribe(value => {
-    //   this.user = value;
-    // });
+    this.userCurrent = JSON.parse(window.sessionStorage.getItem("User_Key"));
+    // this.users.id = this.tokenService.getId();
+
+    this.findAll();
+
   }
 
   findAll() {
     this.postService.findAll().subscribe(data => {
-      this.post_dtos = data;
-    }, error => {})
+      this.post_dto = data;
+      console.log("data")
+      console.log(data)
+    }, error => {
+    })
   }
 
-  create() {
-    this.postService.create(this.formCreate.value, this.tokenService.getId(), this.arrayFile).subscribe(() => {
-      alert("Create thanh cong")
-      // this.findAll()
+  showEdit(post: Post) {
+    console.log("check ham showedit")
+    this.postService.findPostById(post.id).subscribe((data) => {
+      console.log("show data", data)
+      this.contentEdit = data.content ;
+      this.imgEdit = data.image;
+      this.id = data.id;
     })
-    window.location.reload()
+  }
+
+  // ngSubmit() {
+  //   // @ts-ignore
+  //   this.post = new Post(
+  //     this.content,
+  //      this.arrfiles
+  //   )
+  //  let postC = new PostC(this.post,this.tokenService.getId())
+  //   this.postService.create(postC).subscribe(data => {
+  //     this.findAll();
+  //   },
+  //   (error:HttpErrorResponse)=>{
+  //     alert(error);
+  //   })
+  // }
+  ngSubmit() {
+    // @ts-ignore
+
+    console.log('this.userCurrent')
+    console.log(this.userCurrent)
+
+    this.post = new Post(
+      this.content,
+      this.userCurrent,
+      this.arrfiles,
+    )
+    this.postService.create(this.post).subscribe(data => {
+      alert("create thanh cong")
+          this.findAll();
+  })
+  }
+
+  ngSubmitEdit() {
+    console.log("this.post_dto_edit.id")
+    console.log(this.post_dto_edit.id);
+    // @ts-ignore
+    this.postEdit = new Post(
+      this.contentEdit,
+      this.userCurrent,
+      this.arrfiles1
+    )
+    this.postService.edit(this.postEdit, this.id).subscribe(data => {
+     this.findAll();
+    })
   }
 
   submit() {
@@ -86,8 +156,23 @@ export class HomeComponent implements OnInit {
       this.storage.upload(filePath, this.selectedImg).snapshotChanges()
         .pipe(finalize(() => (fileRef.getDownloadURL()
           .subscribe(url => {
-            this.arrayFile = url;
+            this.arrfiles = url;
             console.log(url);
+            alert("ok")
+          })))
+        ).subscribe()
+    }
+  }
+  submit1() {
+    if (this.selectedImg1 != null) {
+      const filePath = this.selectedImg1.name;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectedImg1).snapshotChanges()
+        .pipe(finalize(() => (fileRef.getDownloadURL()
+          .subscribe(url => {
+            this.arrfiles1 = url;
+            console.log(url);
+            alert("da edit anh thanh cong")
           })))
         ).subscribe()
     }
@@ -97,33 +182,26 @@ export class HomeComponent implements OnInit {
     this.selectedImg = this.avatarDom?.nativeElement.files[0];
     this.submit();
   }
-
-  showEdit(post: Post) {
-    console.log("check ham showedit")
-    this.postService.findById(post.id).subscribe((data) => {
-      this.post = data;
-      console.log("show data", data)
-    })
+  uploadFileImg1() {
+    // @ts-ignore
+    this.selectedImg1 = this.avatarDom1.nativeElement.files[0];
+    this.submit1();
   }
 
-  // edit(formEdit: any) {
-  //   this.postService.edit(formEdit).subscribe(() => {
-  //     alert("edit thành công");
-  //     this.getPostByUserId()
-  //   })
-  //   window.location.reload()
-  // }
+
+
+
 
   delete(id: number) {
     this.postService.delete(id).subscribe(() => {
       alert("xóa thành công");
-      this.getPostByUserId()
+      this.findAll()
     })
   }
 
   getPostByUserId() {
     this.postService.findAllPostByUserCurrent(this.tokenService.getId()).subscribe(data => {
-      this.post_dtos = data;
+      this.post_dto = data;
     });
   }
 }
