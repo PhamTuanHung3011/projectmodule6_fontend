@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../environments/environment.prod";
 import {Post_dto} from "../../models/Post_dto";
 import {PostC} from "../../models/PostC";
+import {C} from "@angular/cdk/keycodes";
 
 
 @Injectable({
@@ -48,6 +49,22 @@ export class PostServiceService {
   edit(post: Post, id: number): Observable<any> {
 
     return this.http.put<any>(this.FIND_ALL_POST+ '/'+ id + '/edit', post);
+  }
+
+  getLikeNumber(): Observable<any> {
+    return this.http.get<any>(this.FIND_ALL_POST);
+  }
+
+  createComment(comment: Comment, id: number) : Observable<any> {
+    return  this.http.post<any>(this.FIND_ALL_POST+ "/" + id + "/createComment", comment);
+  }
+
+  findAllComment() : Observable<Comment> {
+    return this.http.get<Comment>(this.FIND_ALL_POST + "/comments");
+  }
+
+  deleteComment(id: number) : Observable<void> {
+    return this.http.delete<void>(this.FIND_ALL_POST + "/" + id + "/deleteComment")
   }
 
 

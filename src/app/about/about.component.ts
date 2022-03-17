@@ -15,7 +15,6 @@ import {Role} from "../../models/Role";
 })
 export class AboutComponent implements OnInit {
 
-  idUser: any;
   updateForm: any;
   user2!: string;
   genders: any;
@@ -23,6 +22,7 @@ export class AboutComponent implements OnInit {
   username:any;
   Iduser!:any;
   user!:Users;
+  curentUser!:Users
 
   constructor(private userService: UserService,
               private authService: AuthService,
@@ -39,8 +39,9 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  this.Iduser = window.sessionStorage.getItem('Id_Key');
-  this.showUserById()
+    // @ts-ignore
+    this.curentUser = window.sessionStorage.getItem('User_Key');
+    this.Iduser = window.sessionStorage.getItem('Id_Key');
     this.checkLogin()
     // @ts-ignore
     this.user2 = window.sessionStorage.getItem('Name_Key');
@@ -48,6 +49,10 @@ export class AboutComponent implements OnInit {
   }
 
   showUserById(){
+    console.log("this.idUser")
+    console.log(this.curentUser)
+    console.log(this.Iduser)
+
   this.userService.findById(this.Iduser).subscribe(data =>{
     console.log(data)
     this.user = data;
@@ -72,11 +77,8 @@ export class AboutComponent implements OnInit {
   }
 
   checkLogin() {
-    this.idUser = window.localStorage.getItem('Id_Key');
-    this.userService.findById(this.idUser).subscribe(value => {
-      this.user = value;
+      this.showUserById()
       this.updateForm.patchValue(this.user);
-    });
   }
 
   editUser() {
