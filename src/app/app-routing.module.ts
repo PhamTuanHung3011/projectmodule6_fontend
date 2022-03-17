@@ -2,20 +2,25 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {AboutComponent} from "./about/about.component";
 import {HomeComponent} from "./home/home.component";
-import {ListFriendComponent} from "./list-friend/list-friend.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {TimeLineComponent} from "./time-line/time-line.component";
-import {LogoutComponent} from "./logout/logout.component";
+import {SearchUserComponent} from "./search-user/search-user.component";
+import {FriendComponent} from "./friend/friend.component";
+
+import {HeaderComponent} from "./header/header.component";
+import {DetailsUserComponent} from "./details-user/details-user.component";
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
-  {path:'home',component:HomeComponent},
-  {path:'time-line',component:TimeLineComponent},
+  {path:'header',component:HeaderComponent},
+  {path:'home',component:HomeComponent },
+  {path:'time-line/:id',component:TimeLineComponent},
   {path:'register',component: RegisterComponent},
-  {path:'about',component: AboutComponent},
-  {path:'listfriend',component:ListFriendComponent},
-  {path:'logout',component:LogoutComponent}
+  {path:'about/:id',component: AboutComponent},
+  {path:'search-user',component: SearchUserComponent},
+  {path:'friend/:id',component: FriendComponent},
+  {path:'details-user/:id',component: DetailsUserComponent},
 ];
 
 @NgModule({

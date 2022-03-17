@@ -11,7 +11,9 @@
                 <div class="central-meta postbox">
                   <span class="create-post">Create post</span>
                   <div class="new-postbox">
-
+                    <figure>
+                      <img src="assets/images/resources/admin.jpg" alt="">
+                    </figure>
                     <div class="newpst-input">
                       <form #f="ngForm" (ngSubmit)="f.form.valid && ngSubmit()">
                         <textarea rows="2" placeholder="Share some what you are thinking?"
@@ -29,9 +31,9 @@
 
                             <li>
                               <i class=""></i>
-                              <label row="2px">
-                                <select>
-                                  <option >QRT</option>
+                              <label row="1px">
+                                <select ng-model="selectedPrivacy" formControlName="status" class="col-3 form-select form-select-sm mb-2 ml-3">
+                                  <option *ngFor="let status of statuss" [value]="status.model">{{status.model}}</option>
                                 </select>
                               </label>
                             </li>
@@ -146,34 +148,9 @@
                             </div>
                           </div>
                         </div>
-                        <div class="coment-area" style="display: block;">
-                          <ul class="we-comet">
-                            <li>
-                              <a href="#" title="" class="showmore underline">more comments+</a>
-                            </li>
-                            <li class="post-comment">
-                              <div class="comet-avatar">
-                                <img src="assets/images/resources/nearly1.jpg" alt="">
-                              </div>
-                              <div class="post-comt-box">
-                                <form method="post">
-                                  <textarea placeholder="Post your comment"></textarea>
-                                  <div class="add-smiles">
-                                    <div class="uploadimage">
-                                      <i class="fa fa-image"></i>
-                                      <label class="fileContainer">
-                                        <input type="file">
-                                      </label>
-                                    </div>
-                                    <span class="em em-expressionless" title="add icon"></span>
-                                  </div>
+<!--                        comment-->
+                                                <app-comments [postId] = p.id ></app-comments>
 
-                                  <button type="submit"></button>
-                                </form>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
                       </div>
 
                     </div>

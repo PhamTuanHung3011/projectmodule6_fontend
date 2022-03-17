@@ -60,8 +60,8 @@ export class TokenService {
 
     if (sessionStorage.getItem(TOKEN_KEY)) {
       // @ts-ignore
-      JSON.parse(sessionStorage.getItem(ROLE_KEY)).forEach(role => {
-        this.roles.push(role.authority)
+      JSON.parse(sessionStorage.getItem(ROLE_KEY)).forEach(roles => {
+        this.roles.push(roles.authority)
       })
     }
     return this.roles;

@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
 
 // @ts-ignore
   status = 'Public';
-
+  statuss: any;
 
   formCreate: any;
 
@@ -146,9 +146,7 @@ export class HomeComponent implements OnInit {
       this.userCurrent,
       this.arrfiles1
     )
-    console.log("content", this.contentEdit)
     this.postService.edit(this.postEdit, this.id).subscribe(data => {
-      console.log("vao ham edit")
      this.findAll();
     })
   }
@@ -194,13 +192,7 @@ export class HomeComponent implements OnInit {
 
 
 
-  edit(formEdit: any) {
-    console.log("vao form edit")
-    // @ts-ignore
-    this.postService.edit(formEdit).subscribe(() => {
-      alert("edit thành công");
-    })
-  }
+
 
   delete(id: number) {
     this.postService.delete(id).subscribe(() => {

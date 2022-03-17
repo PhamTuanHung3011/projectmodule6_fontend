@@ -47,7 +47,7 @@
                   <div class="col-lg-2 col-md-3">
                     <div class="profile-author">
                       <div class="profile-author-thumb">
-                        <img alt="author" src="assets/images/resources/author.jpg">
+                        <img alt="author" [src]="user.avatar">
                         <div class="edit-dp">
                           <label class="fileContainer">
                             <i class="fa fa-camera"></i>
@@ -57,8 +57,8 @@
                       </div>
 
                       <div class="author-content">
-                        <a class="h2 author-name" href="about.html">{{curentUser.name}}</a>
-                        <div class="country">Ontario, CA</div>
+                        <a class="h4 author-name" [routerLink]="['/time-line/',user.id]">{{user.name}}</a>
+                        <div class="country">{{user.address}}</div>
                       </div>
                     </div>
                   </div>
@@ -115,11 +115,11 @@
                   <div class="personal-head">
                     <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
                     <p>
-                      Hi, I’m {{user?.name}}, I’m 36 and I work as a Digital Designer for the “dewwater” Agency in Ontario, Canada
+                      Hi, I’m {{user.name}}, I’m 36 and I work as a Digital Designer for the “dewwater” Agency in Ontario, Canada
                     </p>
                     <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
                     <p>
-                      {{user?.phone}}
+                      {{user.phone}}
                     </p>
                     <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
                     <p>
@@ -127,17 +127,11 @@
                     </p>
                     <span class="f-title"><i class="fa fa-male"></i> Gender:</span>
                     <p>
-                      <select ng-model="selectedPrivacy" formControlName="gender" class="col-3 form-select form-select-sm mb-2 ml-3">
-                        <option *ngFor="let gender of genders" [value]="gender.model">{{gender.model}}</option>
-                      </select>
-                    </p>
-                    <span class="f-title"><i class="fa fa-envelope"></i> Email:</span>
-                    <p>
-                      <a href="">{{user?.email}}</a>
+                      {{user.gender}}
                     </p>
                     <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
                     <p>
-                      {{user?.address}}
+                      {{user.address}}
                     </p>
                     <span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
                     <p>
@@ -148,9 +142,10 @@
                       December 20, 2001
                     </p>
 
-
-
-
+                    <span class="f-title"><i class="fa fa-envelope"></i> Email & Website:</span>
+                    <p>
+                      {{user.email}}
+                    </p>
 
                   </div>
                 </div>
