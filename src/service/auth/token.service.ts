@@ -18,10 +18,10 @@ export class TokenService {
   constructor(private router: Router) {
   }
 
-  public setUser(users: Users) {
+  public setUser(user: Users) {
     window.sessionStorage.removeItem(USERS);
     // @ts-ignore
-    window.sessionStorage.setItem(USERS, users);
+    window.sessionStorage.setItem(USERS, user);
   }
 
   // @ts-ignore

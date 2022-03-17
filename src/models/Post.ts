@@ -4,21 +4,16 @@ import {DatePipe} from "@angular/common";
 export class Post{
   id!: number;
   content!: string;
-  status!: string;
-  date_Post!: Date;
-  count_Like!: number;
+  isPublic!: boolean;
+  time!: Date;
   users!: any;
-  comment!: Comment;
-  listImage!: any;
+  // comment!: Comment;
+  image!: any;
 
 
-  constructor( content: string, status: string, date_Post: Date, count_Like: number, ) {
-
+  constructor(content: string, users: any, image: any) {
     this.content = content;
-    this.status = status;
-    this.date_Post = date_Post;
-    this.count_Like = count_Like;
+    this.users = users;
+    this.image = image;
   }
-
-
 }

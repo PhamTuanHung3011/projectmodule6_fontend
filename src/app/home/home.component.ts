@@ -3,13 +3,15 @@ import {Post} from "../../models/Post";
 import {Image} from "../../models/Image";
 import {UserService} from "../../service/userService/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {PostServiceService} from "../../service/postService/post-service.service";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {TokenService} from "../../service/auth/token.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {finalize} from "rxjs";
 import {Post_dto} from "../../models/Post_dto";
+import {Users} from "../../models/Users";
+import {PostC} from "../../models/PostC";
 
 @Component({
   selector: 'app-home',
@@ -18,23 +20,46 @@ import {Post_dto} from "../../models/Post_dto";
 })
 export class HomeComponent implements OnInit {
   @ViewChild('uploadFile', {static: true}) public avatarDom: ElementRef | undefined
+  @ViewChild('uploadFile1', {static: true}) public avatarDom1: ElementRef | undefined
 
   @Input() userId: any;
 
-  selectedImg: any;
-  selectedImg1: any;
-  arrayFile = '' ;
-// user: Users = {};
+  selectedImg: any = null;
+  selectedImg1: any = null;
+  arrfiles: any = [];
+  arrfiles1: any = [];
+  arrayPicture: string[] = [];
 
+
+
+
+
+  post!:  Post;
+  postEdit!: Post;
+  // @ts-ignore
+  content: string;
+  // @ts-ignore
+  image: string;
+  // @ts-ignore
+  contentEdit: string;
+
+
+
+
+  posts: Post[] = [];
+
+ // @ts-ignore
+  users: Users;
+  // @ts-ignore
+  userCurrent: Users;
 
 
   post_dto: any;
   post_dto_edit: any = {};
-  users = window.sessionStorage.getItem('User_Key');
-  idCurrent = window.sessionStorage.getItem('Id_Key');
-  post:  Post = new Post('', '', new Date(), 0);
-  // post_dto1: Post_dto = new Post_dto(0,"","",new Date(),0,[]);
-  img: Image = new Image(0, "");
+  // @ts-ignore
+  id: number;
+  idCurrent=window.sessionStorage.getItem('Id_Key');
+
 
 // @ts-ignore
   status = 'Public';
@@ -44,12 +69,7 @@ export class HomeComponent implements OnInit {
 
   constructor (private userService: UserService, private activatedRoute: ActivatedRoute, private http: HttpClient, private postService: PostServiceService, private router: Router, private storage: AngularFireStorage, private tokenService: TokenService) {
 
-    this.formCreate = new FormGroup({
-      id: new FormControl(this.post?.id),
-      content: new FormControl(this.post?.content, Validators.minLength(6)),
-      status: new FormControl(this.post?.status),
-      link: new FormControl(this.img?.link),
-    })
+    // @ts-ignore
     this.statuss = [
       {model: 'Public'},
       {model: 'Private'},
@@ -59,13 +79,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.findAll()
-    // this.getPostByUserId()
     // @ts-ignore
-    // this.users = localStorage.getItem('User_Key');
-    // this.userService.findById(this.users).subscribe(value => {
-    //   this.user = value;
-    // });
+    this.userCurrent = JSON.parse(window.sessionStorage.getItem("User_Key"));
+    // this.users.id = this.tokenService.getId();
+    this.id = this.post.id;
+    this.findAll();
   }
 
   findAll() {
@@ -77,14 +95,45 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  create() {
-    let pr = this.formCreate.get('status').value;
-    if (pr == '') {
-      this.formCreate.get('status').setValue('Public');
-    }
-    this.postService.create(this.formCreate.value, this.tokenService.getId(), this.arrayFile).subscribe(() => {
-      alert("Create thanh cong")
-      this.findAll()
+  // ngSubmit() {
+  //   // @ts-ignore
+  //   this.post = new Post(
+  //     this.content,
+  //      this.arrfiles
+  //   )
+  //  let postC = new PostC(this.post,this.tokenService.getId())
+  //   this.postService.create(postC).subscribe(data => {
+  //     this.findAll();
+  //   },
+  //   (error:HttpErrorResponse)=>{
+  //     alert(error);
+  //   })
+  // }
+  ngSubmit() {
+    // @ts-ignore
+
+    console.log('this.userCurrent')
+    console.log(this.userCurrent)
+
+    this.post = new Post(
+      this.content,
+      this.userCurrent,
+      this.arrfiles,
+    )
+    this.postService.create(this.post).subscribe(data => {
+      alert("create thanh cong")
+          this.findAll();
+  })
+  }
+
+  ngSubmitEdit() {
+    // @ts-ignore
+    this.postEdit = new Post(
+      this.content,
+      this.arrfiles1
+    )
+    this.postService.edit(this.postEdit, this.id).subscribe(data => {
+     this.findAll();
     })
     // window.location.reload()
   }
@@ -96,7 +145,7 @@ export class HomeComponent implements OnInit {
       this.storage.upload(filePath, this.selectedImg).snapshotChanges()
         .pipe(finalize(() => (fileRef.getDownloadURL()
           .subscribe(url => {
-            this.arrayFile = url;
+            this.arrfiles = url;
             console.log(url);
             alert("ok")
           })))
@@ -110,28 +159,27 @@ export class HomeComponent implements OnInit {
       this.storage.upload(filePath, this.selectedImg1).snapshotChanges()
         .pipe(finalize(() => (fileRef.getDownloadURL()
           .subscribe(url => {
-            this.arrayFile = url;
+            this.arrfiles1 = url;
             console.log(url);
-            alert("ok")
+            alert("da edit anh thanh cong")
           })))
         ).subscribe()
     }
   }
 
   uploadFileImg() {
-    this.selectedImg = this.avatarDom?.nativeElement.files[0]
+    this.selectedImg = this.avatarDom?.nativeElement.files[0];
     this.submit();
   }
-
   uploadFileImg1() {
-    this.selectedImg1 = this.avatarDom?.nativeElement.files[0]
+    // @ts-ignore
+    this.selectedImg1 = this.avatarDom1.nativeElement.files[0];
     this.submit1();
   }
 
-
-  showEdit(postdto: Post_dto) {
+  showEdit(post: Post) {
     console.log("check ham showedit")
-    this.postService.findById(postdto.id).subscribe((data) => {
+    this.postService.findById(post.id).subscribe((data) => {
       console.log("show data", data)
       this.post_dto_edit = data ;
 
@@ -139,9 +187,10 @@ export class HomeComponent implements OnInit {
   }
 
   edit(formEdit: any) {
-    this.postService.edit(formEdit,this.tokenService.getId(), this.arrayFile).subscribe(() => {
+    console.log("vao form edit")
+    // @ts-ignore
+    this.postService.edit(formEdit).subscribe(() => {
       alert("edit thành công");
-      this.findAll()
     })
   }
 
