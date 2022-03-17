@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
@@ -34,14 +33,13 @@ import { CommentsComponent } from './comments/comments.component';
     HomeComponent,
     AboutComponent,
     HeaderComponent,
-    FooterComponent,
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
     TimeLineComponent,
     SearchUserComponent,
     FriendComponent,
-    DetailsUserComponent,
+    DetailsUserComponent
     CommentsComponent,
   ],
   imports: [
