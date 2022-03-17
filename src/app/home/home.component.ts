@@ -32,8 +32,7 @@ export class HomeComponent implements OnInit {
 
 
 
-
-
+  idEdit!: number
   post!:  Post;
   postEdit!: Post;
   // @ts-ignore
@@ -42,6 +41,7 @@ export class HomeComponent implements OnInit {
   image: string;
   // @ts-ignore
   contentEdit: string;
+  imgEdit!: string;
 
 
 
@@ -82,8 +82,9 @@ export class HomeComponent implements OnInit {
     // @ts-ignore
     this.userCurrent = JSON.parse(window.sessionStorage.getItem("User_Key"));
     // this.users.id = this.tokenService.getId();
-    this.id = this.post.id;
+
     this.findAll();
+
   }
 
   findAll() {
@@ -92,6 +93,16 @@ export class HomeComponent implements OnInit {
       console.log("data")
       console.log(data)
     }, error => {
+    })
+  }
+
+  showEdit(post: Post) {
+    console.log("check ham showedit")
+    this.postService.findPostById(post.id).subscribe((data) => {
+      console.log("show data", data)
+      this.contentEdit = data.content ;
+      this.imgEdit = data.image;
+      this.id = data.id;
     })
   }
 
@@ -127,12 +138,17 @@ export class HomeComponent implements OnInit {
   }
 
   ngSubmitEdit() {
+    console.log("this.post_dto_edit.id")
+    console.log(this.post_dto_edit.id);
     // @ts-ignore
     this.postEdit = new Post(
-      this.content,
+      this.contentEdit,
+      this.userCurrent,
       this.arrfiles1
     )
+    console.log("content", this.contentEdit)
     this.postService.edit(this.postEdit, this.id).subscribe(data => {
+      console.log("vao ham edit")
      this.findAll();
     })
   }
@@ -176,14 +192,7 @@ export class HomeComponent implements OnInit {
     this.submit1();
   }
 
-  showEdit(post: Post) {
-    console.log("check ham showedit")
-    this.postService.findById(post.id).subscribe((data) => {
-      console.log("show data", data)
-      this.post_dto_edit = data ;
 
-    })
-  }
 
   edit(formEdit: any) {
     console.log("vao form edit")
@@ -193,12 +202,12 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  // delete(id: number) {
-  //   this.postService.delete(id).subscribe(() => {
-  //     alert("xóa thành công");
-  //     this.findAll()
-  //   })
-  // }
+  delete(id: number) {
+    this.postService.delete(id).subscribe(() => {
+      alert("xóa thành công");
+      this.findAll()
+    })
+  }
 
   getPostByUserId() {
     this.postService.findAllPostByUserCurrent(this.tokenService.getId()).subscribe(data => {

@@ -76,9 +76,10 @@
                           <div class="more">
                             <div class="more-post-optns"><i class="ti-more-alt"></i>
                               <ul>
-                                <li *ngIf="p?.users?.id == userCurrent.id"><i  class="fa fa-pencil-square-o" data-toggle="modal" data-target="#editPost" (click)="showEdit(p)"></i>Edit Post
+                                <li *ngIf="p?.users?.id == userCurrent.id"><i  class="fa fa-pencil-square-o" data-toggle="modal"
+                                                                               data-target="#editPost" (click)="showEdit(p)"></i>Edit Post
                                 </li>
-<!--                                <li><i class="fa fa-trash-o" data-toggle="modal" data-target="#deletePost" (click)="delete(p.id)"></i>Delete Post</li>-->
+                                <li><i class="fa fa-trash-o" data-toggle="modal" data-target="#deletePost" (click)="delete(p.id)"></i>Delete Post</li>
                                 <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
                                 <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
                               </ul>
@@ -358,10 +359,11 @@
       </div>
 
             <div class="modal-body">
-              <form #f1="ngForm" (ngSubmit)="f1.form.valid&& ngSubmitEdit()">
+              <form #f1="ngForm" (ngSubmit)="f1.form.valid && ngSubmitEdit()">
                 <div class="form-group">
                   <label class="col-form-label">Content:</label>
-                  <input [(ngModel)]="contentEdit" name = 'content'>
+
+                  <input [(ngModel)]="contentEdit" name = 'contentEdit'>
 
                 </div>
                 <div class="form-group">
@@ -371,13 +373,13 @@
                   <div >
                     <figure >
                       <a>
-                        <img src="{{post_dto_edit.image}}">
+                        <img src="{{imgEdit}}">
                       </a>
                     </figure>
                   </div>
                 </div>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-secondary"  data-dismiss="modal">Save</button>
+                <button type="submit" class="btn btn-secondary" (click)="ngSubmitEdit()"  data-dismiss="modal">Save</button>
               </form>
             </div>
       <div class="modal-footer">
