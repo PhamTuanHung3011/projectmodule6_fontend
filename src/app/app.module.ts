@@ -29,6 +29,7 @@ import { DetailsUserComponent } from './details-user/details-user.component';
 
 import { ChatComponent } from './chat/chat.component';
 import { CommentsComponent } from './comments/comments.component';
+import {AuthGuard} from "@angular/fire/auth-guard";
 
 
 
@@ -64,6 +65,7 @@ import { CommentsComponent } from './comments/comments.component';
     ReactiveFormsModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
