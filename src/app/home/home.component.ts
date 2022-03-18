@@ -27,9 +27,6 @@ export class HomeComponent implements OnInit {
   arrfiles: any = [];
   arrfiles1: any = [];
   arrayPicture: string[] = [];
-
-
-
   idEdit!: number
   post!:  Post;
   postEdit!: Post;
@@ -40,43 +37,39 @@ export class HomeComponent implements OnInit {
   // @ts-ignore
   contentEdit: string;
   imgEdit!: string;
-
-
-
-
   posts: Post[] = [];
-
  // @ts-ignore
   users: Users;
   // @ts-ignore
   userCurrent: Users;
   idCurrent!:any;
-
   formCreate!: FormGroup;
   user1!: Users;
   Iduser!:any;
-  constructor(private userService: UserService,private activatedRoute: ActivatedRoute,private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
   post_dto: any;
+  id!: number;
   post_dto_edit: any = {};
-  // @ts-ignore
-  id: number;
-  idCurrent=window.sessionStorage.getItem('Id_Key');
-
-
-// @ts-ignore
-  status = 'Public';
-  statuss: any;
-
-  formCreate: any;
+  constructor(private userService: UserService,private activatedRoute: ActivatedRoute,private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
+//   post_dto: any;
+//
+//   // @ts-ignore
+//   id: number;
+//   idCurrent=window.sessionStorage.getItem('Id_Key');
+//
+// // @ts-ignore
+//   status = 'Public';
+//   statuss: any;
+//
+//   formCreate: any;
 
   // constructor (private userService: UserService, private activatedRoute: ActivatedRoute, private http: HttpClient, private postService: PostServiceService, private router: Router, private storage: AngularFireStorage, private tokenService: TokenService) {
 
     // @ts-ignore
-    this.statuss = [
-      {model: 'Public'},
-      {model: 'Private'},
-      {model: 'Friend only'}
-    ];
+    // this.statuss = [
+    //   {model: 'Public'},
+    //   {model: 'Private'},
+    //   {model: 'Friend only'}
+    // ];
 
   }
 
@@ -89,6 +82,7 @@ export class HomeComponent implements OnInit {
     //   this.user = value;
     // });
     this.showUserById()
+    // @ts-ignore
     this.userCurrent = JSON.parse(window.sessionStorage.getItem("User_Key"));
     // this.users.id = this.tokenService.getId();
 
