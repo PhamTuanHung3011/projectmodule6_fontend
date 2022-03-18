@@ -28,7 +28,7 @@ export class FriendComponent implements OnInit {
     this.activatedRoute.params.subscribe((data) => {
       this.id = data['id'];
       this.getAllFriend();
-      // this.Iduser = window.sessionStorage.getItem('Id_Key');
+      this.Iduser = window.sessionStorage.getItem('Id_Key');
       this.showUserById();
     })
   }
