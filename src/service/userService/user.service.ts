@@ -9,6 +9,7 @@ import {Users} from "../../models/Users";
 })
 export class UserService {
   private USER = environment.API_LOCAL + '/user';
+  inforUser!: Users;
 
   constructor(private http: HttpClient) {
   }
@@ -18,7 +19,7 @@ export class UserService {
   }
 
   edit(user: Users): Observable<any> {
-    return this.http.put(this.USER + user.id, user);
+    return this.http.put(this.USER +'/editUser/'+ user.id, user);
   }
 
   getAll():Observable<any>{

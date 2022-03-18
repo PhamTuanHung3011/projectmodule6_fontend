@@ -3,7 +3,7 @@ import {TokenService} from "../../service/auth/token.service";
 import {AuthService} from "../../service/auth/auth.service";
 import {Users} from "../../models/Users";
 import {UserService} from "../../service/userService/user.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {Role} from "../../models/Role";
@@ -14,7 +14,6 @@ import {Role} from "../../models/Role";
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-
   updateForm: any;
   user2!: string;
   genders: any;
@@ -24,13 +23,12 @@ export class AboutComponent implements OnInit {
   user!:Users;
   curentUser!:Users
 
-  constructor(private userService: UserService,
-              private authService: AuthService,
-              private tokenService: TokenService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router,
+  constructor(private authService: AuthService,
               private formBuilder: FormBuilder,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private  activatedRoute:ActivatedRoute,
+              private tokenService: TokenService,
+              private userService:UserService) {
     this.genders = [
       {model: 'MALE'},
       {model: 'FEMALE'},
@@ -39,13 +37,10 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // @ts-ignore
-    this.curentUser = window.sessionStorage.getItem('User_Key');
-    this.Iduser = window.sessionStorage.getItem('Id_Key');
-    this.checkLogin()
-    // @ts-ignore
-    this.user2 = window.sessionStorage.getItem('Name_Key');
-    this.editForm();
+    this.activatedRoute.params.subscribe((data) => {
+      this.Iduser = data['id'];
+    })
+  this.showUserById();
   }
 
   showUserById(){

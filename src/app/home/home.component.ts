@@ -50,8 +50,12 @@ export class HomeComponent implements OnInit {
   users: Users;
   // @ts-ignore
   userCurrent: Users;
+  idCurrent!:any;
 
-
+  formCreate!: FormGroup;
+  user1!: Users;
+  Iduser!:any;
+  constructor(private userService: UserService,private activatedRoute: ActivatedRoute,private http: HttpClient, private postService: PostServiceService, private router: Router,private storage: AngularFireStorage,private tokenService: TokenService) {
   post_dto: any;
   post_dto_edit: any = {};
   // @ts-ignore
@@ -65,7 +69,7 @@ export class HomeComponent implements OnInit {
 
   formCreate: any;
 
-  constructor (private userService: UserService, private activatedRoute: ActivatedRoute, private http: HttpClient, private postService: PostServiceService, private router: Router, private storage: AngularFireStorage, private tokenService: TokenService) {
+  // constructor (private userService: UserService, private activatedRoute: ActivatedRoute, private http: HttpClient, private postService: PostServiceService, private router: Router, private storage: AngularFireStorage, private tokenService: TokenService) {
 
     // @ts-ignore
     this.statuss = [
@@ -78,13 +82,26 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     // @ts-ignore
+    this.name_user2 = window.sessionStorage.getItem('Name_Key')
+    this.Iduser = window.sessionStorage.getItem('Id_Key');
+    // this.users = localStorage.getItem('User_Key');
+    // this.userService.findById(this.users).subscribe(value => {
+    //   this.user = value;
+    // });
+    this.showUserById()
     this.userCurrent = JSON.parse(window.sessionStorage.getItem("User_Key"));
     // this.users.id = this.tokenService.getId();
 
     this.findAll();
 
   }
-
+  showUserById(){
+    this.userService.findById(this.Iduser).subscribe(data =>{
+      console.log(data)
+      this.user1 = data;
+      console.log(this.user1.name)
+    })
+  }
   findAll() {
     this.postService.findAll().subscribe(data => {
       this.post_dto = data;

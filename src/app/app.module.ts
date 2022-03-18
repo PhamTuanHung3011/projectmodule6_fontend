@@ -24,6 +24,9 @@ import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {FriendComponent} from "./friend/friend.component";
 import { DetailsUserComponent } from './details-user/details-user.component';
+// import {TimeLineUserComponent} from "./time-line-friend/time-line.component";
+// import {AccountSettingComponent} from "./account-setting/account-setting.component";
+
 import { ChatComponent } from './chat/chat.component';
 import { CommentsComponent } from './comments/comments.component';
 
@@ -43,6 +46,8 @@ import { CommentsComponent } from './comments/comments.component';
     SearchUserComponent,
     FriendComponent,
     DetailsUserComponent,
+    // TimeLineUserComponent
+    // AccountSettingComponent,
     ChatComponent,
     CommentsComponent,
   ],

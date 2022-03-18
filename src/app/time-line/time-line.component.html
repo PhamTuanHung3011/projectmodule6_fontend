@@ -14,7 +14,8 @@
                 </div>
                 <img src="assets/images/resources/profile-image.jpg" alt="">
                 <ul class="profile-controls">
-                  <li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>
+<!--==========================   button add Friend-======================================-->
+                  <li><a (click)="addFriend(user.id)" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>
                   <li><a href="#" title="Follow" data-toggle="tooltip"><i class="fa fa-star"></i></a></li>
                   <li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>
                   <li>
@@ -45,7 +46,7 @@
                   <div class="col-lg-2 col-md-3">
                     <div class="profile-author">
                       <div class="profile-author-thumb">
-                        <img alt="author" src="assets/images/resources/author.jpg">
+                        <img alt="author" [src]="user.avatar">
                         <div class="edit-dp">
                           <label class="fileContainer">
                             <i class="fa fa-camera"></i>
@@ -55,21 +56,21 @@
                       </div>
 
                       <div class="author-content">
-                        <a class="h4 author-name" href="about.html">{{user2.name}}</a>
-                        <div class="country">{{user2.address}}</div>
+                        <a class="h4 author-name" [routerLink]="['/time-line',user.id]">    {{user.name}}</a>
+                        <div class="country">{{user.address}}</div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-10 col-md-9">
                     <ul class="profile-menu">
                       <li>
-                        <a class="" routerLink="/time-line">Timeline</a>
+                        <a class="" [routerLink]="['/time-line',user.id]">Timeline</a>
                       </li>
-<!--                      <li>-->
-<!--                        <a class="" [routerLink]="['/about/',user2.id]">About</a>-->
-<!--                      </li>-->
                       <li>
-                        <a class="" routerLink="/friend">Friends</a>
+                        <a class="" [routerLink]="['/about',user.id]">About</a>
+                      </li>
+                      <li>
+                        <a class="" [routerLink]="['/friend',user.id]">Friends</a>
                       </li>
                       <li>
                         <a class="" href="timeline-photos.html">Photos</a>

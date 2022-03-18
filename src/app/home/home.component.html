@@ -12,41 +12,49 @@
                   <span class="create-post">Create post</span>
                   <div class="new-postbox">
                     <figure>
-                      <img src="assets/images/resources/admin.jpg" alt="">
+                      <img [src]="user1.avatar" style="width: 50px;height:50px;border-radius:30px">
                     </figure>
                     <div class="newpst-input">
-                      <form #f="ngForm" (ngSubmit)="f.form.valid && ngSubmit()">
-                        <textarea rows="2" placeholder="Share some what you are thinking?"
-                                  [(ngModel)]="content" name="content"></textarea>
-
-                        <div class="attachments">
-                          <ul>
-                            <li>
-                              <i class="fa fa-image"></i>
-                              <label class="fileContainer">
-                                <input type="file" #uploadFile (change)="uploadFileImg()" class="form-control">
-                                <!--                                <img [src]="arrayFile" width="300" height="250">-->
-                              </label>
-                            </li>
-
-                            <li>
-                              <i class=""></i>
-                              <label row="1px">
-                                <select ng-model="selectedPrivacy" formControlName="status" class="col-3 form-select form-select-sm mb-2 ml-3">
-                                  <option *ngFor="let status of statuss" [value]="status.model">{{status.model}}</option>
-                                </select>
-                              </label>
-                            </li>
-                            <li class="preview-btn">
-                              <button class="post-btn-preview" type="submit" data-ripple="">Preview</button>
-                            </li>
-                          </ul>
-                          <button class="post-btn" type="submit">Post</button>
-                        </div>
+                      <form method="post">
+                        <textarea rows="2" placeholder="Share some what you are thinking?"></textarea>
                       </form>
                     </div>
                     <div class="attachments">
-
+                      <ul>
+                        <li>
+													<span class="add-loc">
+														<i class="fa fa-map-marker"></i>
+													</span>
+                        </li>
+                        <li>
+                          <i class="fa fa-music"></i>
+                          <label class="fileContainer">
+                            <input type="file">
+                          </label>
+                        </li>
+                        <li>
+                          <i class="fa fa-image"></i>
+                          <label class="fileContainer">
+                            <input type="file">
+                          </label>
+                        </li>
+                        <li>
+                          <i class="fa fa-video-camera"></i>
+                          <label class="fileContainer">
+                            <input type="file">
+                          </label>
+                        </li>
+                        <li>
+                          <i class="fa fa-camera"></i>
+                          <label class="fileContainer">
+                            <input type="file">
+                          </label>
+                        </li>
+                        <li class="preview-btn">
+                          <button class="post-btn-preview" type="submit" data-ripple="">Preview</button>
+                        </li>
+                      </ul>
+                      <button class="post-btn" type="submit" data-ripple="">Post</button>
                     </div>
                     <div class="add-location-post">
                       <span>Drag map point to selected area</span>
@@ -68,49 +76,71 @@
                 </div><!-- add post new box -->
                 <div class="loadMore">
                   <div class="central-meta item">
-                    <div class="user-post" *ngFor="let p of post_dto">
+                    <div class="user-post">
                       <div class="friend-info">
                         <figure>
-                          <img src="assets/images/resources/nearly1.jpg" alt="">
-                          <ins><a [routerLink]="['admin/detail', p.id]">{{p?.post?.users?.name}}</a></ins>
+                          <img [src]="user1.avatar" alt="">
                         </figure>
                         <div class="friend-name">
                           <div class="more">
                             <div class="more-post-optns"><i class="ti-more-alt"></i>
                               <ul>
-                                <li *ngIf="p?.users?.id == userCurrent.id"><i  class="fa fa-pencil-square-o" data-toggle="modal"
-                                                                               data-target="#editPost" (click)="showEdit(p)"></i>Edit Post
-                                </li>
-                                <li><i class="fa fa-trash-o" data-toggle="modal" data-target="#deletePost" (click)="delete(p.id)"></i>Delete Post</li>
+                                <li><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                                <li><i class="fa fa-trash-o"></i>Delete Post</li>
                                 <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
                                 <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
+                                <li><i class="fa fa-clock-o"></i>Schedule Post</li>
+                                <li><i class="fa fa-wpexplorer"></i>Select as featured</li>
+                                <li><i class="fa fa-bell-slash-o"></i>Turn off Notifications</li>
                               </ul>
                             </div>
                           </div>
-
+                          <ins><a href="time-line.html" title="">{{user1.name}}</a> Post Album</ins>
+                          <span><i class="fa fa-globe"></i> published: September,15 2020 19:PM </span>
                         </div>
                         <div class="post-meta">
-
-                          <span><i class="fa fa-globe"></i>{{p.time}}</span>
-
                           <p>
-                            {{p.content}}
+                            Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero.
                           </p>
                           <figure>
                             <div class="img-bunch">
                               <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                   <figure>
-                                    <a >
-                                      <img src="{{p.image}}">
+                                    <a href="#" title="" data-toggle="modal" data-target="#img-comt">
+                                      <img src="assets/images/resources/album1.jpg" alt="">
                                     </a>
+                                  </figure>
+                                  <figure>
+                                    <a href="#" title="" data-toggle="modal" data-target="#img-comt">
+                                      <img src="assets/images/resources/album2.jpg" alt="">
+                                    </a>
+                                  </figure>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <figure>
+                                    <a href="#" title="" data-toggle="modal" data-target="#img-comt">
+                                      <img src="assets/images/resources/album6.jpg" alt="">
+                                    </a>
+                                  </figure>
+                                  <figure>
+                                    <a href="#" title="" data-toggle="modal" data-target="#img-comt">
+                                      <img src="assets/images/resources/album5.jpg" alt="">
+                                    </a>
+                                  </figure>
+                                  <figure>
+                                    <a href="#" title="" data-toggle="modal" data-target="#img-comt">
+                                      <img src="assets/images/resources/album4.jpg" alt="">
+                                    </a>
+                                    <div class="more-photos">
+                                      <span>+15</span>
+                                    </div>
                                   </figure>
                                 </div>
                               </div>
                             </div>
                             <ul class="like-dislike">
-                              <li><a class="bg-purple" href="#" title="Save to Pin Post"><i
-                                class="fa fa-thumb-tack"></i></a></li>
+                              <li><a class="bg-purple" href="#" title="Save to Pin Post"><i class="fa fa-thumb-tack"></i></a></li>
                               <li><a class="bg-blue" href="#" title="Like Post"><i class="ti-thumb-up"></i></a></li>
                               <li><a class="bg-red" href="#" title="dislike Post"><i class="ti-thumb-down"></i></a></li>
                             </ul>
@@ -143,14 +173,98 @@
                               </li>
                             </ul>
                             <div class="users-thumb-list">
-                              <span><strong>You</strong>, <b>Sarah</b> and <a href="#"
-                                                                              title="">24+ more</a> liked</span>
+                              <a data-toggle="tooltip" title="Anderw" href="#">
+                                <img alt="" src="assets/images/resources/userlist-1.jpg">
+                              </a>
+                              <a data-toggle="tooltip" title="frank" href="#">
+                                <img alt="" src="assets/images/resources/userlist-2.jpg">
+                              </a>
+                              <a data-toggle="tooltip" title="Sara" href="#">
+                                <img alt="" src="assets/images/resources/userlist-3.jpg">
+                              </a>
+                              <a data-toggle="tooltip" title="Amy" href="#">
+                                <img alt="" src="assets/images/resources/userlist-4.jpg">
+                              </a>
+                              <a data-toggle="tooltip" title="Ema" href="#">
+                                <img alt="" src="assets/images/resources/userlist-5.jpg">
+                              </a>
+                              <span><strong>You</strong>, <b>Sarah</b> and <a href="#" title="">24+ more</a> liked</span>
                             </div>
                           </div>
                         </div>
-<!--                        comment-->
-                                                <app-comments [postId] = p.id ></app-comments>
+                        <div class="coment-area" style="display: block;">
+                          <ul class="we-comet">
+                            <li>
+                              <div class="comet-avatar">
+                                <img src="assets/images/resources/nearly3.jpg" alt="">
+                              </div>
+                              <div class="we-comment">
+                                <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                <div class="inline-itms">
+                                  <span>1 year ago</span>
+                                  <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                  <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                </div>
+                              </div>
 
+                            </li>
+                            <li>
+                              <div class="comet-avatar">
+                                <img src="assets/images/resources/comet-4.jpg" alt="">
+                              </div>
+                              <div class="we-comment">
+                                <h5><a href="time-line.html" title="">Sophia</a></h5>
+                                <p>we are working for the dance and sing songs. this video is very awesome for the youngster.
+                                  <i class="em em-smiley"></i>
+                                </p>
+                                <div class="inline-itms">
+                                  <span>1 year ago</span>
+                                  <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                  <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <a href="#" title="" class="showmore underline">more comments+</a>
+                            </li>
+                            <li class="post-comment">
+                              <div class="comet-avatar">
+                                <img src="assets/images/resources/nearly1.jpg" alt="">
+                              </div>
+                              <div class="post-comt-box">
+                                <form method="post">
+                                  <textarea placeholder="Post your comment"></textarea>
+                                  <div class="add-smiles">
+                                    <div class="uploadimage">
+                                      <i class="fa fa-image"></i>
+                                      <label class="fileContainer">
+                                        <input type="file">
+                                      </label>
+                                    </div>
+                                    <span class="em em-expressionless" title="add icon"></span>
+                                    <div class="smiles-bunch">
+                                      <i class="em em---1"></i>
+                                      <i class="em em-smiley"></i>
+                                      <i class="em em-anguished"></i>
+                                      <i class="em em-laughing"></i>
+                                      <i class="em em-angry"></i>
+                                      <i class="em em-astonished"></i>
+                                      <i class="em em-blush"></i>
+                                      <i class="em em-disappointed"></i>
+                                      <i class="em em-worried"></i>
+                                      <i class="em em-kissing_heart"></i>
+                                      <i class="em em-rage"></i>
+                                      <i class="em em-stuck_out_tongue"></i>
+                                    </div>
+                                  </div>
+
+                                  <button type="submit"></button>
+                                </form>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
 
                     </div>
@@ -326,41 +440,47 @@
   </div>
 </div><!-- share popup -->
 
-<div class="modal fade" id="editPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+<div class="popup-wraper3">
+  <div class="popup">
+    <span class="popup-closed"><i class="ti-close"></i></span>
+    <div class="popup-meta">
+      <div class="popup-head">
+        <h5>Report Post</h5>
       </div>
-
-            <div class="modal-body">
-              <form #f1="ngForm" (ngSubmit)="f1.form.valid && ngSubmitEdit()">
-                <div class="form-group">
-                  <label class="col-form-label">Content:</label>
-
-                  <input [(ngModel)]="contentEdit" name = 'contentEdit'>
-
-                </div>
-                <div class="form-group">
-                  <label class="col-form-label">Img:</label>
-                  <input type="file" #uploadFile1 (change)="uploadFileImg1()" class="form-control" name="listImage">
-                  <!--            <img src="{{img.link}}" width="300" height="250">-->
-                  <div >
-                    <figure >
-                      <a>
-                        <img src="{{imgEdit}}">
-                      </a>
-                    </figure>
-                  </div>
-                </div>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-secondary" (click)="ngSubmitEdit()"  data-dismiss="modal">Save</button>
-              </form>
+      <div class="Rpt-meta">
+        <span>We're sorry something's wrong. How can we help?</span>
+        <form method="post" class="c-form">
+          <div class="form-radio">
+            <div class="radio">
+              <label>
+                <input type="radio" name="radio" checked="checked"><i class="check-box"></i>It's spam or abuse
+              </label>
             </div>
-      <div class="modal-footer">
-
+            <div class="radio">
+              <label>
+                <input type="radio" name="radio"><i class="check-box"></i>It breaks r/technology's rules
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="radio"><i class="check-box"></i>Not Related
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="radio"><i class="check-box"></i>Other issues
+              </label>
+            </div>
+          </div>
+          <div>
+            <label>Write about Report</label>
+            <textarea placeholder="write someting about Post" rows="2"></textarea>
+          </div>
+          <div>
+            <button data-ripple="" type="submit" class="main-btn">Submit</button>
+            <a href="#" data-ripple="" class="main-btn3 cancel">Close</a>
+          </div>
+        </form>
       </div>
     </div>
   </div>
