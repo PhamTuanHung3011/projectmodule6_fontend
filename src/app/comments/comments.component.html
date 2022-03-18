@@ -3,16 +3,16 @@
     <div *ngFor="let c of comments">
       <li>
         <div class="comet-avatar">
-          <img src="images/resources/nearly3.jpg" alt="">
+          <img src="assets/images/resources/nearly3.jpg" alt="">
         </div>
         <div class="we-comment">
-          <h5>{{c?.user?.name}}</h5>
+          <h5>{{c?.users?.name}}</h5>
           <div class="friend-name">
             <div class="more">
               <div class="more-post-optns"><i class="ti-more-alt"></i>
                 <ul>
-<!--                  <li><i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#editComment" (click)="showEditComment(c)"></i>Edit Comment-->
-<!--                  </li>-->
+                  <li><i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#editComment" (click)="showEditComment(c)"></i>Edit Comment
+                  </li>
                   <li><i class="fa fa-trash-o" data-toggle="modal" data-target="#deletePost" (click)="deleteComment(c?.id)"></i>Delete Comment</li>
                   <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
                   <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
@@ -66,7 +66,8 @@
 <!--            </div>-->
 <!--          </div>-->
 
-          <button class="btn-outline-success" type="submit">----------></button>
+          <button class="btn-outline-success" type="submit">Send</button>
+
         </form>
       </div>
     </li>
@@ -75,43 +76,43 @@
 
 
 
-<!--<div class="modal fade" id="editComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--  <div class="modal-dialog" role="document">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="modal-header">-->
-<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--          <span aria-hidden="true">&times;</span>-->
-<!--        </button>-->
-<!--      </div>-->
+<div class="modal fade" id="editComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-<!--      <div class="modal-body">-->
-<!--        <form #f1="ngForm" (ngSubmit)="f1.form.valid && ngSubmitEditComment()">-->
+      <div class="modal-body">
+        <form #f1="ngForm" (ngSubmit)="f1.form.valid && ngSubmitEditComment()">
+          <div class="form-group">
+            <label class="col-form-label">Content:</label>
+
+            <input [(ngModel)]="contentComment" name = 'contentComment'>
+
+          </div>
 <!--          <div class="form-group">-->
-<!--            <label class="col-form-label">Content:</label>-->
-
-<!--            <input [(ngModel)]="contentComment" name = 'contentComment'>-->
-
+<!--            <label class="col-form-label">Img:</label>-->
+<!--            <input type="file" #uploadFile1 (change)="uploadFileImg1()" class="form-control" name="listImage">-->
+<!--            &lt;!&ndash;            <img src="{{img.link}}" width="300" height="250">&ndash;&gt;-->
+<!--            <div >-->
+<!--              <figure >-->
+<!--                <a>-->
+<!--                  <img src="{{imgEdit}}">-->
+<!--                </a>-->
+<!--              </figure>-->
+<!--            </div>-->
 <!--          </div>-->
-<!--&lt;!&ndash;          <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;            <label class="col-form-label">Img:</label>&ndash;&gt;-->
-<!--&lt;!&ndash;            <input type="file" #uploadFile1 (change)="uploadFileImg1()" class="form-control" name="listImage">&ndash;&gt;-->
-<!--&lt;!&ndash;            &lt;!&ndash;            <img src="{{img.link}}" width="300" height="250">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;            <div >&ndash;&gt;-->
-<!--&lt;!&ndash;              <figure >&ndash;&gt;-->
-<!--&lt;!&ndash;                <a>&ndash;&gt;-->
-<!--&lt;!&ndash;                  <img src="{{imgEdit}}">&ndash;&gt;-->
-<!--&lt;!&ndash;                </a>&ndash;&gt;-->
-<!--&lt;!&ndash;              </figure>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--          <button type="submit" class="btn btn-secondary" (click)="ngSubmitEditComment()"  data-dismiss="modal">Save</button>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--      <div class="modal-footer">-->
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-secondary" (click)="ngSubmitEditComment()"  data-dismiss="modal">Save</button>
+        </form>
+      </div>
+      <div class="modal-footer">
 
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>&lt;!&ndash; report popup &ndash;&gt;-->
+      </div>
+    </div>
+  </div>
+</div><!-- report popup -->
 
