@@ -6,6 +6,9 @@ import {Users} from "../../models/Users";
 import {TokenService} from "../../service/auth/token.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../service/userService/user.service";
+import {NotifiServiceService} from "../../service/notifiService/notifi-service.service";
+import {Notifi} from "../../models/Notifi";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-header',
@@ -13,6 +16,7 @@ import {UserService} from "../../service/userService/user.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  check = true;
   Iduser!:any;
   username:any;
   public isLogin$: Observable<boolean> = new Observable<boolean>();
@@ -22,7 +26,10 @@ export class HeaderComponent implements OnInit {
   nameUser!:any;
   nameUser1!:any;
   id:any;
-  constructor( private activatedRoute:ActivatedRoute,private auth: AuthService,private myService: FriendServiceService, private router: Router,private userService:UserService) {
+  listNotif!:Notifi[];
+  constructor( private activatedRoute:ActivatedRoute,private auth: AuthService,
+               private friendService: FriendServiceService, private router: Router,
+               private userService:UserService,private notif:NotifiServiceService) {
   }
 
   public ngOnInit(): void {
@@ -48,11 +55,41 @@ export class HeaderComponent implements OnInit {
   }
 
   public showUserSearch(namesearch: string) {
-    this.myService.searchUser(namesearch).subscribe(data =>{
+    this.friendService.searchUser(namesearch).subscribe(data =>{
       console.log("Data===>",data)
       this.listUser = data;
     })
 
   }
+  showNotifUser(){
 
+    this.notif.getNotif(this.Iduser).subscribe(data =>{
+      console.log(this.Iduser)
+      console.log(data)
+      this.listNotif = data;
+    })
+  }
+
+  okMyFriend(n: Notifi) {
+    this.friendService.agreeMakeFriend(n.from.id,n.to.id,n).subscribe(
+      data =>{
+        console.log(this.Iduser)
+        console.log(n)
+        this.listNotif = data;
+        alert("ket ban thanh cong")
+      },
+    (error:HttpErrorResponse) =>{
+        alert(error);
+    }
+    )
+
+  }
+
+  deleteNotifi(n: Notifi) {
+  this.friendService.deleteWaitFriend(n.from.id,n.to.id,n.id).subscribe(data =>{
+    console.log(n)
+    this.listNotif =data;
+    alert("Successfully!")
+  })
+  }
 }

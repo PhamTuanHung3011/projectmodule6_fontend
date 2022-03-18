@@ -15,18 +15,15 @@
       <!--      THÔNG BÁO THÔNG TIN LIÊN KẾT  BẠN----------------------------------------------->
       <li>
         <div class="dropdown">
-          <a data-toggle="dropdown">
-            <i class="fa fa-user"></i><em class="bg-red" style="border-radius: 50%">5</em>
+          <a data-toggle="dropdown" (click)="showNotifUser()">
+            <i class="fa fa-user"></i><em class="bg-red" style="border-radius: 50%"></em>
           </a>
-          <div class="dropdown-menu" style="width: 350px">
-            <div>
-              <figure>
-                <img src="assets/images/resources/thumb-2.jpg" alt="">
-                <span> Gửi Yêu Cầu Kết Bạn</span>
-              </figure>
+          <div class="dropdown-menu" style="width: 350px" >
+            <div *ngFor="let n of listNotif">
+                <span>{{n.content}}</span>
               <div class="add-del-friends">
-                <a href="#" title=""><i class="fa fa-heart"></i></a>
-                <a href="#" title=""><i class="fa fa-trash"></i></a>
+                <a  (click)="okMyFriend(n)" title=""><i class="fa fa-heart"></i></a>
+                <a  (click)="deleteNotifi(n)"><i class="fa fa-trash"></i></a>
               </div>
             </div>
           </div>

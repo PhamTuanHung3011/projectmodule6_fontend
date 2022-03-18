@@ -43,4 +43,10 @@ export class FriendServiceService {
   waitMakeFriend(idUser:number,idFriend:number):Observable<any>{
     return this.http.get(this.FRIEND_AIP+'/waitMakeFriend/'+idUser+'/'+idFriend)
   }
+  agreeMakeFriend(idSender:any,idRece :any,n:any):Observable<any>{
+    return this.http.put(this.FRIEND_AIP+'/agreeMakeFriend/'+idSender+"/?idRece="+idRece,n)
+  }
+  deleteWaitFriend(idSender:any,idRece:any,idNotif:any):Observable<any>{
+    return this.http.delete(this.FRIEND_AIP+'/deleteWaitFriend/'+idSender+'/'+idRece+'/'+idNotif)
+  }
 }
