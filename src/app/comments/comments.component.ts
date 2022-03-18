@@ -28,16 +28,17 @@ export class CommentsComponent implements OnInit {
   // @ts-ignore
   result: boolean;
 
+  showComment!: Comment;
   // @ts-ignore
   contentComment: string;
   // @ts-ignore
-  id: number;
+  idComment: number;
   postComment!: Comment;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private service: PostServiceService,) {
-    this.getAll();
+    this.getAll(this.postId);
     this.unknownId = window.sessionStorage.getItem('Id_Key');
   }
 
@@ -52,13 +53,14 @@ export class CommentsComponent implements OnInit {
     }, error => {
       console.log(error);
     });
-    this.getAll();
+    this.getAll(this.postId);
   }
 
 
 
-  getAll(){
-    this.service.findAllComment().subscribe(
+  getAll(postId :number){
+
+    this.service.findAllCommentByPostId(postId).subscribe(
       result => {
         console.log(result)
         this.comments = result;
@@ -71,7 +73,7 @@ export class CommentsComponent implements OnInit {
   deleteComment(commentId: number) {
     this.service.deleteComment(commentId).subscribe(
       ()=> {
-        this.getAll();
+        this.getAll(this.postId);
       }, error => {
         console.log(error);
       }
@@ -80,7 +82,8 @@ export class CommentsComponent implements OnInit {
 
   createComment() {
     this.content = this.formComment.get('content')?.value;
-
+    console.log("this.postId")
+    console.log(this.postId)
     let currentDate = new Date();
     let comment: Comment = {
       // @ts-ignore
@@ -98,24 +101,25 @@ export class CommentsComponent implements OnInit {
   }
 
   showEditComment(comment: Comment) {
-    console.log("check ham showedit")
+    console.log("check ham showedit comment")
     this.service.findCommentById(comment.id).subscribe((data) => {
       console.log("show data", data)
       this.contentComment = data.content ;
-      this.id = data.id;
+      // this.showComment = data;
+      this.idComment = data.id;
     })
   }
 
   ngSubmitEditComment() {
-    console.log("this.id")
-    console.log(this.id)
+    console.log("this.idComment")
+    console.log(this.idComment)
     // @ts-ignore
     this.postComment = new Comment(
       this.contentComment,
     )
-    this.service.editComment(this.postComment,this.id).subscribe(data => {
+    this.service.editComment(this.postComment, this.idComment).subscribe(data => {
       alert("OK")
-      this.getAll();
+      this.getAll(this.postId);
     })
   }
 
